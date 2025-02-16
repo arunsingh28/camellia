@@ -10,7 +10,7 @@ const Navbar = () => {
 
     return (
         <React.Fragment>
-            <div className="px-2 py-3 w-[250px] max-w-[220px] font-roboto flex flex-col justify-between bg-gradient-to-b from-blue-100/20 to-purple-100">
+            <div className="px-2 py-3 w-[250px] max-w-[220px] font-roboto flex flex-col justify-between bg-gradient-to-b from-blue-100/20 to-primary/10">
                 <div>
                     <Input
                         type="text"
@@ -27,16 +27,16 @@ const Navbar = () => {
                             className={cn(
                                 'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:bg-gray-200 border-l-[3px] rounded-none group',
                                 location.pathname === item.path
-                                    ? 'bg-gray-200 border-l-[3px] border-purple-600 rounded-r-md'
+                                    ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md'
                                     : 'border-l-transparent rounded-md',
                             )}
                         >
                             <item.icon
                                 size={16}
                                 className={cn(
-                                    'group-hover:text-purple-600 group-hover:stroke-purple-600',
+                                    'group-hover:text-primary group-hover:stroke-primary',
                                     location.pathname === item.path
-                                        ? 'text-purple-600 stroke-purple-600'
+                                        ? 'text-primary stroke-primary'
                                         : 'text-gray-700 stroke-gray-700',
                                 )}
                             />
@@ -46,25 +46,25 @@ const Navbar = () => {
 
                     <div className="w-full h-[1px] bg-gray-200 my-3 mt-6" />
                     <div>
-                        <p className="text-[12px] font-roboto text-gray-500 mb-3">
+                        <p className="text-[12px] font-roboto text-primary mb-3">
                             FINANCING
                         </p>
                         {menuOptions.financing.map((item) => (
                             <Link
                                 to={item.path}
                                 className={cn(
-                                    'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:rounded-r-md hover:bg-gray-200 border-l-[3px] border-purple-600 rounded-none group',
+                                    'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:rounded-r-md hover:bg-gray-200 border-l-[3px] border-primary rounded-none group',
                                     location.pathname === item.path
-                                        ? 'bg-gray-200 border-l-[3px] border-purple-600 rounded-r-md'
+                                        ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md'
                                         : 'border-l-transparent rounded-md',
                                 )}
                             >
                                 <item.icon
                                     size={16}
                                     className={cn(
-                                        'group-hover:text-purple-600 group-hover:stroke-purple-600',
+                                        'group-hover:text-primary group-hover:stroke-primary',
                                         location.pathname === item.path
-                                            ? 'text-purple-600 stroke-purple-600'
+                                            ? 'text-primary stroke-primary'
                                             : 'text-gray-700 stroke-gray-700',
                                     )}
                                 />
@@ -77,7 +77,7 @@ const Navbar = () => {
 
                     <div className="w-full h-[1px] bg-gray-200 my-3 mt-6" />
                     <div>
-                        <p className="text-[12px] font-roboto text-gray-500 mb-3">
+                        <p className="text-[12px] font-roboto text-primary mb-3">
                             UTILS
                         </p>
                         {menuOptions.utils &&
@@ -85,18 +85,18 @@ const Navbar = () => {
                                 <Link
                                     to={item.path}
                                     className={cn(
-                                        'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:rounded-r-md hover:bg-gray-200 border-l-[3px] border-purple-600 rounded-none group',
+                                        'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:rounded-r-md hover:bg-gray-200 border-l-[3px] border-primary rounded-none group',
                                         location.pathname === item.path
-                                            ? 'bg-gray-200 border-l-[3px] border-purple-600 rounded-r-md'
+                                            ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md'
                                             : 'border-l-transparent rounded-md',
                                     )}
                                 >
                                     <item.icon
                                         size={16}
                                         className={cn(
-                                            'group-hover:text-purple-600 group-hover:stroke-purple-600',
+                                            'group-hover:text-primary group-hover:stroke-primary',
                                             location.pathname === item.path
-                                                ? 'text-purple-600 stroke-purple-600'
+                                                ? 'text-primary stroke-primary'
                                                 : 'text-gray-700 stroke-gray-700',
                                         )}
                                     />
@@ -114,7 +114,7 @@ const Navbar = () => {
                             Need Help ?
                         </p>
                         <p className="text-[12px]">
-                            <span className="text-indigo-500 font-medium">
+                            <span className="text-primary font-medium">
                                 Get in touch
                             </span>{' '}
                             with one of our experts.
@@ -122,7 +122,7 @@ const Navbar = () => {
                     </div>
                     <div className="w-full h-[1px] bg-gray-200 my-3" />
                     <div>
-                        <p className="text-[12px] font-roboto text-gray-500 mb-3 uppercase">
+                        <p className="text-[12px] font-roboto text-primary mb-3 uppercase ">
                             genreal
                         </p>
                         {menuOptions.general.map((item) => (
