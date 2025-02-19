@@ -1,4 +1,4 @@
-import { Button, Typography,Dropdown } from 'antd';
+import { Button, Typography, Dropdown } from 'antd';
 import {
     Database,
     UserIcon,
@@ -7,7 +7,7 @@ import {
     ChevronDown,
     Plus,
     Pencil,
-    Trash
+    Trash,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,6 @@ import Statics from '@/pages/dashboard/components/Statics';
 import { paths } from '@/router/path';
 
 import type { MenuProps } from 'antd';
-
 
 const studentItems: MenuProps['items'] = [
     {
@@ -29,17 +28,17 @@ const studentItems: MenuProps['items'] = [
     {
         key: '2',
         label: 'Add New Student Data',
-        icon: <Plus size={18}/>,
+        icon: <Plus size={18} />,
     },
     {
         key: '3',
         label: 'Edit Existing Student Data',
-        icon: <Pencil size={18}/>,
+        icon: <Pencil size={18} />,
     },
     {
         key: '4',
         label: 'Delete Student Data',
-        icon: <Trash size={18}/>,
+        icon: <Trash size={18} />,
         className: '!text-red-700',
     },
 ];
@@ -92,34 +91,54 @@ const MasterData = () => {
                     <span className="italic text-gray-500">or</span> Edit Data
                 </Typography.Paragraph>
 
-                <div className='flex gap-4'>
-                <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
-                    <Typography.Title level={5}>Student</Typography.Title>
-                    <Typography.Paragraph  className='!text-gray-600'>
-                        Create new student data or edit existing student data
-                    </Typography.Paragraph>
-                    <Dropdown menu={{ items: studentItems }}>
-                        <Button icon={<ChevronDown size={18}/>} iconPosition='end' classNames={{icon:'mt-1.5'}}>Student's Oprations</Button>
-                    </Dropdown>
-                </div>
-                <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
-                    <Typography.Title level={5}>Teacher</Typography.Title>
-                    <Typography.Paragraph  className='!text-gray-600'>
-                        Create new teacher data or edit existing teacher data
-                    </Typography.Paragraph>
-                    <Dropdown menu={{ items: studentItems }}>
-                        <Button icon={<ChevronDown size={18}/>} iconPosition='end' classNames={{icon:'mt-1.5'}}>Teacher's Oprations</Button>
-                    </Dropdown>
-                </div>
-                <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
-                    <Typography.Title level={5}>Staff</Typography.Title>
-                    <Typography.Paragraph className='!text-gray-600'>
-                        Create new staff data or edit existing staff data
-                    </Typography.Paragraph>
-                    <Dropdown menu={{ items: studentItems }}>
-                        <Button icon={<ChevronDown size={18}/>} iconPosition='end' classNames={{icon:'mt-1.5'}}>Staff's Oprations</Button>
-                    </Dropdown>
-                </div>
+                <div className="flex gap-4">
+                    <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
+                        <Typography.Title level={5}>Student</Typography.Title>
+                        <Typography.Paragraph className="!text-gray-600">
+                            Create new student data or edit existing student
+                            data
+                        </Typography.Paragraph>
+                        <Dropdown menu={{ items: studentItems }}>
+                            <Button
+                                icon={<ChevronDown size={18} />}
+                                iconPosition="end"
+                                classNames={{ icon: 'mt-1.5' }}
+                            >
+                                Student's Oprations
+                            </Button>
+                        </Dropdown>
+                    </div>
+                    <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
+                        <Typography.Title level={5}>Teacher</Typography.Title>
+                        <Typography.Paragraph className="!text-gray-600">
+                            Create new teacher data or edit existing teacher
+                            data
+                        </Typography.Paragraph>
+                        <Dropdown menu={{ items: studentItems }}>
+                            <Button
+                                icon={<ChevronDown size={18} />}
+                                iconPosition="end"
+                                classNames={{ icon: 'mt-1.5' }}
+                            >
+                                Teacher's Oprations
+                            </Button>
+                        </Dropdown>
+                    </div>
+                    <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
+                        <Typography.Title level={5}>Staff</Typography.Title>
+                        <Typography.Paragraph className="!text-gray-600">
+                            Create new staff data or edit existing staff data
+                        </Typography.Paragraph>
+                        <Dropdown menu={{ items: studentItems }}>
+                            <Button
+                                icon={<ChevronDown size={18} />}
+                                iconPosition="end"
+                                classNames={{ icon: 'mt-1.5' }}
+                            >
+                                Staff's Oprations
+                            </Button>
+                        </Dropdown>
+                    </div>
                 </div>
             </div>
         </div>

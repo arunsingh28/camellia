@@ -7,6 +7,7 @@ const AppLayout = lazy(() => import('@/layouts/app.layout'));
 const Home = lazy(() => import('@/pages/dashboard'));
 const CreditScore = lazy(() => import('@/pages/credit-score'));
 const MasterData = lazy(() => import('@/pages/master-data'));
+const Students = lazy(() => import('@/pages/students'));
 
 export const routes: RouteObject[] = [
     {
@@ -33,6 +34,12 @@ export const routes: RouteObject[] = [
                 path: paths.APP.MASTER_DATA.INDEX,
                 element: <React.Suspense fallback={<div>Loading...</div>}>
                     <MasterData />
+                </React.Suspense>,
+            },
+            {
+                path: paths.APP.STUDENTS.INDEX,
+                element: <React.Suspense fallback={<div>Loading...</div>}>
+                    <Students />
                 </React.Suspense>,
             }
         ],

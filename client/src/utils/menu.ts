@@ -21,12 +21,12 @@ export const menuOptions: MenuOptions = {
         {
             name: "Students",
             icon: GraduationCap,
-            path: '/backend',
+            path: paths.APP.STUDENTS.INDEX,
         },
         {
             name: "Teachers",
             icon: User2,
-            path: "/dashboard",
+            path: paths.APP.TEACHERS.INDEX,
         },
     ],
     financing: [
