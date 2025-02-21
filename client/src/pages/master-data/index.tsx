@@ -1,4 +1,4 @@
-import { Button, Typography, Space } from 'antd';
+import { Button, Typography, Space, Modal } from 'antd';
 import {
     Database,
     UserIcon,
@@ -10,8 +10,14 @@ import { Link } from 'react-router-dom';
 
 import Statics from '@/pages/dashboard/components/Statics';
 import { paths } from '@/router/path';
+import { useState } from 'react';
+import { DownloadTeacherRecord } from './components/DownloadTeachers';
+import { DownloadStudentRecord } from './components/DownloadStudent';
 
 const MasterData = () => {
+    const [openTeacherRecord, setOpenTeacherRecord] = useState(false);
+    const [openStudentRecord, setOpenStudentRecord] = useState(false);
+
     return (
         <div className="p-2">
             <div>
@@ -109,34 +115,75 @@ const MasterData = () => {
                 </Typography.Paragraph>
 
                 <div className="flex gap-4">
-                    <div className="w-[400px] px-3 py-3 border rounded-lg bg-white shadow-md">
+                    <div
+                        className="w-[400px] px-3 py-3 border rounded-lg bg-white shadow-md"
+                        style={{
+                            backgroundColor: '#e5e5f7',
+                            opacity: 0.8,
+                            backgroundImage:
+                                'repeating-radial-gradient( circle at 0 50%, transparent 0, #f7e5f3 10px ), repeating-linear-gradient( #faa6d0, #741b47 )',
+                        }}
+                    >
                         <Typography.Title level={5}>
                             Teacher Record
                         </Typography.Title>
-
+                        <Typography.Paragraph className="!text-gray-900 !font-bold">
+                            Download the all the teacher records in excel format
+                        </Typography.Paragraph>
                         <Button
                             className="hover:!border-primary hover:!text-primary my-2"
                             icon={<Download size={18} />}
                             classNames={{ icon: 'mt-1.5' }}
+                            onClick={() => setOpenTeacherRecord(true)}
                         >
                             Download
                         </Button>
                     </div>
-                    <div className="w-[400px] px-3 py-3 border rounded-lg bg-white shadow-md">
+                    <div
+                        className="w-[400px] px-3 py-3 border rounded-lg shadow-md"
+                        style={{
+                            backgroundColor: '#e5e5f7',
+                            opacity: 0.8,
+                            backgroundImage:
+                                'repeating-radial-gradient( circle at 0 0%, transparent 0, #f7e5f3 10px ), repeating-linear-gradient( #faa6d0, #741b47 )',
+                        }}
+                    >
                         <Typography.Title level={5}>
-                            Upload Bulk Student Record
+                            Student Record
                         </Typography.Title>
+                        <Typography.Paragraph className="!text-gray-900 !font-bold">
+                            Download the all the student records in excel format
+                        </Typography.Paragraph>
 
                         <Button
                             className="hover:!border-primary hover:!text-primary my-2"
                             icon={<Download size={18} />}
                             classNames={{ icon: 'mt-1.5' }}
+                            onClick={() => setOpenStudentRecord(true)}
                         >
                             Download
                         </Button>
                     </div>
                 </div>
             </div>
+            <Modal
+                open={openTeacherRecord}
+                onCancel={() => setOpenTeacherRecord(false)}
+                title="Download Teacher Record"
+                okButtonProps={{ style: { display: 'none' } }}
+                cancelText="Close"
+            >
+                <DownloadTeacherRecord />
+            </Modal>
+            <Modal
+                open={openStudentRecord}
+                onCancel={() => setOpenStudentRecord(false)}
+                title="Download Student Record"
+                okButtonProps={{ style: { display: 'none' } }}
+                cancelText="Close"
+            >
+                <DownloadStudentRecord />
+            </Modal>
         </div>
     );
 };
