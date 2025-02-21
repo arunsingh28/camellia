@@ -1286,7 +1286,7 @@ const TableComponent = () => {
         {
             title: <Checkbox />,
             key: 'checkbox',
-            render: (text) => {
+            render: () => {
                 return <Checkbox />;
             },
         },
