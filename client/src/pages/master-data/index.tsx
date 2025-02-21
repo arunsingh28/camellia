@@ -1,13 +1,14 @@
-import { Button, Typography, Dropdown } from 'antd';
+import { Button, Typography, Dropdown, Space } from 'antd';
 import {
     Database,
     UserIcon,
     GraduationCap,
-    Users,
     ChevronDown,
     Plus,
     Pencil,
     Trash,
+    Upload,
+    Download,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -52,7 +53,7 @@ const MasterData = () => {
                     className="!text-gray-700 flex items-center gap-1"
                 >
                     <Database />
-                    Master Data
+                    Master Records
                 </Typography.Title>
             </div>
             <div className="grid grid-cols-5 flex-wrap gap-4 bg-background-light rounded-xl px-4 py-5 my-5">
@@ -75,7 +76,7 @@ const MasterData = () => {
                         className="shadow-md"
                     />
                 </Link>
-                <Link to={paths.APP.STAFF.INDEX}>
+                {/* <Link to={paths.APP.STAFF.INDEX}>
                     <Statics
                         icon={Users}
                         title="Total Staff"
@@ -83,7 +84,7 @@ const MasterData = () => {
                         prefix=""
                         className="shadow-md"
                     />
-                </Link>
+                </Link> */}
             </div>
             <div>
                 <Typography.Paragraph className="!text-primary uppercase">
@@ -93,51 +94,35 @@ const MasterData = () => {
 
                 <div className="flex gap-4">
                     <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
-                        <Typography.Title level={5}>Student</Typography.Title>
+                        <Typography.Title level={5}>Teacher Record</Typography.Title>
                         <Typography.Paragraph className="!text-gray-600">
-                            Create new student data or edit existing student
-                            data
+                            download template and upload bulk teacher record don't change the column name and format.
                         </Typography.Paragraph>
-                        <Dropdown menu={{ items: studentItems }}>
-                            <Button
-                                icon={<ChevronDown size={18} />}
-                                iconPosition="end"
-                                classNames={{ icon: 'mt-1.5' }}
-                            >
-                                Student's Oprations
-                            </Button>
-                        </Dropdown>
+                        <Space>
+                           <Button className='hover:!border-primary hover:!text-primary' icon={<Upload size={18} />} classNames={{ icon: 'mt-1.5' }}>Upload Bulk Teacher Record</Button>
+                           <Button className='hover:!border-primary hover:!text-primary' icon={<Download size={18} />} classNames={{ icon: 'mt-1.5' }}>Download Template</Button>
+                        </Space>
                     </div>
                     <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
-                        <Typography.Title level={5}>Teacher</Typography.Title>
-                        <Typography.Paragraph className="!text-gray-600">
-                            Create new teacher data or edit existing teacher
-                            data
+                        <Typography.Title level={5}>Upload Bulk Student Record</Typography.Title>
+                        <Typography.Paragraph className="!text-gray-600"> 
+                            download template and upload bulk student record don't change the column name and format.
                         </Typography.Paragraph>
-                        <Dropdown menu={{ items: studentItems }}>
-                            <Button
-                                icon={<ChevronDown size={18} />}
-                                iconPosition="end"
+                          <Space>
+                          <Button className='hover:!border-primary hover:!text-primary'
+                            icon={<Upload size={18} />}
                                 classNames={{ icon: 'mt-1.5' }}
                             >
-                                Teacher's Oprations
+                                Upload Bulk Student Record
                             </Button>
-                        </Dropdown>
-                    </div>
-                    <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
-                        <Typography.Title level={5}>Staff</Typography.Title>
-                        <Typography.Paragraph className="!text-gray-600">
-                            Create new staff data or edit existing staff data
-                        </Typography.Paragraph>
-                        <Dropdown menu={{ items: studentItems }}>
-                            <Button
-                                icon={<ChevronDown size={18} />}
-                                iconPosition="end"
+                            <Button className='hover:!border-primary hover:!text-primary'
+                            icon={<Download size={18} />}
                                 classNames={{ icon: 'mt-1.5' }}
                             >
-                                Staff's Oprations
+                               Download Template
                             </Button>
-                        </Dropdown>
+                     
+                          </Space>
                     </div>
                 </div>
             </div>

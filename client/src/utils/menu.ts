@@ -38,7 +38,7 @@ export const menuOptions: MenuOptions = {
     ],
     utils:[
         {
-            name: "Master Data",
+            name: "Master Records",
             icon: Database,
             path: paths.APP.MASTER_DATA.INDEX,
         },
