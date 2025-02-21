@@ -1,15 +1,11 @@
-import { HomeIcon, LogOutIcon,User2, GraduationCap, History, MessageCircle, Workflow, Wallet2 } from "lucide-react";
+import { HomeIcon, LogOutIcon,User2, GraduationCap, History, MessageCircle, Workflow, Wallet2, LucideProps, Database } from "lucide-react";
 import { paths } from "@/router/path";
 
 
 interface MenuOptions{
     [key: string]: {
         name: string
-    icon: React.ForwardRefExoticComponent<React.SVGProps<SVGSVGElement> & {
-        title?: string | undefined;
-        titleId?: string | undefined;
-        size?: number | undefined;
-    }>
+    icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
     path: string
     }[]
 }
@@ -25,12 +21,12 @@ export const menuOptions: MenuOptions = {
         {
             name: "Students",
             icon: GraduationCap,
-            path: '/backend',
+            path: paths.APP.STUDENTS.INDEX,
         },
         {
             name: "Teachers",
             icon: User2,
-            path: "/dashboard",
+            path: paths.APP.TEACHERS.INDEX,
         },
     ],
     financing: [
@@ -42,9 +38,9 @@ export const menuOptions: MenuOptions = {
     ],
     utils:[
         {
-            name: "History",
-            icon: History,
-            path: "/dashboard",
+            name: "Master Records",
+            icon: Database,
+            path: paths.APP.MASTER_DATA.INDEX,
         },
         {
             name: "Messages",
@@ -55,7 +51,12 @@ export const menuOptions: MenuOptions = {
             name: "Workflow",
             icon: Workflow,
             path: "/dashboard",
-        }
+        },
+        {
+            name: "History",
+            icon: History,
+            path: "/dashboard",
+        },
     ],
     general: [
         {
