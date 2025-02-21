@@ -1,8 +1,11 @@
 import { APP_NAME, schoolName, schoolLogo } from "@/constants";
-import { Button } from "antd";
+import { Button,Drawer } from "antd";
 import {ChevronDownIcon, Settings} from "lucide-react"
+import { useState } from "react";
+import SettingComponent from "./settings";
 
 const topbar = () => {
+    const [open, setOpen] = useState(false);
     return (
         <div className="py-1 z-10 bg-gradient-to-r from-blue-100/20 to-purple-100">
             <div className="flex items-center justify-between px-3">
@@ -13,12 +16,15 @@ const topbar = () => {
                 </h1>
                 </div>
                <div className="flex items-center gap-5">
-                <Button type="primary" className="bg-primary border border-primary hover:!bg-primary/90 font-roboto  !rounded-lg" icon={<Settings size={16}/>}>Settings</Button>
+                <Button type="primary" className="bg-primary border border-primary hover:!bg-primary/90 font-roboto  !rounded-lg" icon={<Settings size={16}/>} onClick={() => setOpen(true)}>Settings</Button>
                <Status/>
                <div className="w-[1px] h-[30px] bg-primary"/>
                <ProfileSettings />
                </div>
             </div>
+            <Drawer open={open} onClose={() => setOpen(false)} size="large">
+                <SettingComponent/>
+            </Drawer>
         </div>
     );
 };
