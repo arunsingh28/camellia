@@ -29,7 +29,7 @@ const MasterData = () => {
                     Master Records
                 </Typography.Title>
             </div>
-            <div className="grid grid-cols-5 flex-wrap gap-4 bg-background-light rounded-xl px-4 py-5 my-5">
+            <div className="grid grid-cols-3 xl:grid-cols-5 flex-wrap gap-4 bg-background-light rounded-xl px-4 py-5 my-5">
                 <Link to={paths.APP.STUDENTS.INDEX}>
                     <Statics
                         icon={GraduationCap}
@@ -56,8 +56,8 @@ const MasterData = () => {
                     <span className="italic text-gray-500">or</span> Edit Data
                 </Typography.Paragraph>
 
-                <div className="flex gap-4">
-                    <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
+                <div className="grid grid-cols-2 xl:grid-cols-3 gap-4">
+                    <div className=" px-3 py-2 border rounded-lg bg-white shadow-md">
                         <Typography.Title level={5}>
                             Teacher Record
                         </Typography.Title>
@@ -65,7 +65,7 @@ const MasterData = () => {
                             download template and upload bulk teacher record
                             don't change the column name and format.
                         </Typography.Paragraph>
-                        <Space>
+                        <Space className="flex items-start flex-col xl:flex-row gap-2">
                             <Button
                                 className="hover:!border-primary hover:!text-primary"
                                 icon={<Upload size={18} />}
@@ -82,7 +82,7 @@ const MasterData = () => {
                             </Button>
                         </Space>
                     </div>
-                    <div className="w-[500px] px-3 py-2 border rounded-lg bg-white shadow-md">
+                    <div className="px-3 py-2 border rounded-lg bg-white shadow-md">
                         <Typography.Title level={5}>
                             Upload Bulk Student Record
                         </Typography.Title>
@@ -90,7 +90,7 @@ const MasterData = () => {
                             download template and upload bulk student record
                             don't change the column name and format.
                         </Typography.Paragraph>
-                        <Space>
+                        <Space className="flex flex-col xl:flex-row gap-2 items-start">
                             <Button
                                 className="hover:!border-primary hover:!text-primary"
                                 icon={<Upload size={18} />}

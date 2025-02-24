@@ -31,6 +31,11 @@ const Navbar = () => {
         setMenu(filteredMenu);
     }, [search]);
 
+    const handleResetSearch = () => {
+        setSearch('');
+        setMenu(menuOptions);
+    };
+
     return (
         <React.Fragment>
             <div className="px-2 py-3 w-[250px] max-w-[220px] font-roboto flex flex-col justify-between bg-gradient-to-b from-blue-100/20 to-primary/10">
@@ -56,6 +61,7 @@ const Navbar = () => {
                                             ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md'
                                             : 'border-l-transparent rounded-md',
                                     )}
+                                    onClick={handleResetSearch}
                                 >
                                     <item.icon
                                         size={16}
@@ -91,6 +97,7 @@ const Navbar = () => {
                                                 ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md'
                                                 : 'border-l-transparent rounded-md',
                                         )}
+                                        onClick={handleResetSearch}
                                     >
                                         <item.icon
                                             size={16}
@@ -126,6 +133,7 @@ const Navbar = () => {
                                                     ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md'
                                                     : 'border-l-transparent rounded-md',
                                             )}
+                                            onClick={handleResetSearch}
                                         >
                                             <item.icon
                                                 size={16}
