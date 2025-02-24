@@ -1177,6 +1177,7 @@ const TableComponent = () => {
 
     const getColumnSearchProps = (
         dataIndex: DataIndex,
+        placeholder_name: string,
     ): TableColumnType<DataType> => ({
         filterDropdown: ({
             setSelectedKeys,
@@ -1188,7 +1189,7 @@ const TableComponent = () => {
             <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
                 <Input
                     ref={searchInput}
-                    placeholder={`Search ${dataIndex}`}
+                    placeholder={`Search ${placeholder_name}`}
                     value={selectedKeys[0]}
                     onChange={(e) =>
                         setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -1295,15 +1296,15 @@ const TableComponent = () => {
             title: 'Addmission No',
             dataIndex: 'addmission_no',
             key: 'addmission_no',
-            width: 150,
             fixed: 'left',
+            ...getColumnSearchProps('addmission_no', 'Addmission No'),
         },
         {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
             width: 150,
-            ...getColumnSearchProps('name'),
+            ...getColumnSearchProps('name', 'Name'),
             fixed: 'left',
         },
         {
@@ -1391,7 +1392,7 @@ const TableComponent = () => {
             render: (text) => {
                 return <span className="text-gray-500">{text}</span>;
             },
-            ...getColumnSearchProps('email'),
+            ...getColumnSearchProps('email', 'Email'),
         },
         {
             title: 'Phone',
@@ -1400,7 +1401,7 @@ const TableComponent = () => {
             render: (text) => {
                 return <span className="text-gray-500">{text}</span>;
             },
-            ...getColumnSearchProps('phone'),
+            ...getColumnSearchProps('phone', 'Phone'),
         },
         {
             title: 'House Name',
