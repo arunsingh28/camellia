@@ -2,7 +2,7 @@ import { HomeIcon, LogOutIcon,User2, GraduationCap, History, MessageCircle, Work
 import { paths } from "@/router/path";
 
 
-interface MenuOptions{
+export interface IMenuOptions{
     [key: string]: {
         name: string
     icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
@@ -11,7 +11,7 @@ interface MenuOptions{
 }
 
 
-export const menuOptions: MenuOptions = {
+export const menuOptions: IMenuOptions = {
     main:[
         {
             name: "Dashboard",
