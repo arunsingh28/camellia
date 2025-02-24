@@ -29,7 +29,7 @@ const MasterData = () => {
                     Master Records
                 </Typography.Title>
             </div>
-            <div className="grid grid-cols-3 xl:grid-cols-5 flex-wrap gap-4 bg-background-light rounded-xl px-4 py-5 my-5">
+            <div className="grid sm:grid-cols-3 grid-cols-1 xl:grid-cols-5 flex-wrap gap-4 bg-background-light rounded-xl px-4 py-5 my-5">
                 <Link to={paths.APP.STUDENTS.INDEX}>
                     <Statics
                         icon={GraduationCap}
@@ -56,7 +56,7 @@ const MasterData = () => {
                     <span className="italic text-gray-500">or</span> Edit Data
                 </Typography.Paragraph>
 
-                <div className="grid grid-cols-2 xl:grid-cols-3 gap-4">
+                <div className="grid sm:grid-cols-2 grid-cols-1 xl:grid-cols-3 gap-4">
                     <div className=" px-3 py-2 border rounded-lg bg-white shadow-md">
                         <Typography.Title level={5}>
                             Teacher Record
@@ -114,7 +114,7 @@ const MasterData = () => {
                     export data
                 </Typography.Paragraph>
 
-                <div className="flex gap-4">
+                <div className="flex gap-4 flex-wrap">
                     <div
                         className="w-[400px] px-3 py-3 border rounded-lg bg-white shadow-md"
                         style={{
