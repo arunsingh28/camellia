@@ -1289,22 +1289,26 @@ const TableComponent = () => {
             render: () => {
                 return <Checkbox />;
             },
+            fixed: 'left',
         },
         {
             title: 'Addmission No',
             dataIndex: 'addmission_no',
             key: 'addmission_no',
+            fixed: 'left',
         },
         {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
             ...getColumnSearchProps('name'),
+            fixed: 'left',
         },
         {
             title: 'Roll No',
             dataIndex: 'roll_no',
             key: 'roll_no',
+    
         },
         {
             title: 'Class',
@@ -1408,6 +1412,7 @@ const TableComponent = () => {
         {
             title: 'Action',
             key: 'action',
+            fixed: 'right',
             render: (_, record) => (
                 <Space size={'small'}>
                     <Button
@@ -1817,7 +1822,8 @@ const TableComponent = () => {
 
     return (
         <div>
-            <Table dataSource={dataSource} columns={columns} />
+            <Table dataSource={dataSource} columns={columns} 
+            />
 
             <Modal
                 title={
