@@ -38,7 +38,7 @@ const Navbar = () => {
 
     return (
         <React.Fragment>
-            <div className="px-2 py-3 w-[250px] max-w-[220px] font-roboto flex flex-col justify-between bg-gradient-to-b from-blue-100/20 to-primary/10">
+            <div className="py-3 w-[250px] max-w-[220px] font-roboto flex flex-col justify-between bg-gradient-to-b from-blue-100/20 to-primary/10">
                 <div>
                     <Input
                         type="text"
@@ -47,11 +47,11 @@ const Navbar = () => {
                         prefix={
                             <SearchIcon size={16} className="text-gray-500" />
                         }
-                        className="w-full rounded-md px-2 py-1 border border-gray-300 mb-4 text-sm focus:!border-primary focus:!ring-primary focus:!ring-1 active:!border-primary active:!ring-primary focus:!outline-none"
+                        className="mx-2 w-[calc(100%-1rem)] rounded-md px-2 py-1 border border-gray-300 mb-4 text-sm focus:!border-primary focus:!ring-primary focus:!ring-1 active:!border-primary active:!ring-primary focus:!outline-none"
                         onChange={handleSearch}
                     />
                     {menu.main.length > 0 && (
-                        <div>
+                        <div className='pr-2'>
                             {menu.main.map((item) => (
                                 <Link
                                     to={item.path}
@@ -59,9 +59,10 @@ const Navbar = () => {
                                         'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:bg-gray-200 border-l-[3px] rounded-none group',
                                         location.pathname === item.path
                                             ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md'
-                                            : 'border-l-transparent rounded-md',
+                                            : 'border-l-transparent rounded-md transition-all duration-300 hover:!ml-2',
                                     )}
                                     onClick={handleResetSearch}
+                                    key={item.path}
                                 >
                                     <item.icon
                                         size={16}
@@ -82,22 +83,23 @@ const Navbar = () => {
 
                     {menu.financing.length > 0 && (
                         <>
-                            <div className="w-full h-[1px] bg-gray-200 my-3 mt-6" />
+                            <div className="w-[calc(100%-1rem)] h-[1px] bg-gray-200 my-3 mt-6 ml-2" />
 
-                            <div>
-                                <p className="text-[12px] font-roboto text-primary mb-3">
+                            <div className='pr-2'>
+                                <span className="text-[12px] font-roboto text-primary mb-3 ml-2">
                                     FINANCING
-                                </p>
+                                </span>
                                 {menu.financing.map((item) => (
                                     <Link
                                         to={item.path}
                                         className={cn(
-                                            'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:rounded-r-md hover:bg-gray-200 border-l-[3px] border-primary rounded-none group',
+                                            'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:bg-gray-200 border-l-[3px] rounded-none group',
                                             location.pathname === item.path
                                                 ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md'
-                                                : 'border-l-transparent rounded-md',
+                                                : 'border-l-transparent rounded-md transition-all duration-300 hover:!ml-2',
                                         )}
                                         onClick={handleResetSearch}
+                                        key={item.path}
                                     >
                                         <item.icon
                                             size={16}
@@ -118,9 +120,9 @@ const Navbar = () => {
                     )}
                     {menu.utils.length > 0 && (
                         <>
-                            <div className="w-full h-[1px] bg-gray-200 my-3 mt-6" />
-                            <div>
-                                <p className="text-[12px] font-roboto text-primary mb-3">
+                            <div className="w-[calc(100%-1rem)] h-[1px] bg-gray-200 my-3 mt-6 ml-2" />
+                            <div className='pr-2'>
+                                <p className="text-[12px] font-roboto text-primary mb-3 ml-2">
                                     UTILS
                                 </p>
                                 {menu.utils &&
@@ -128,12 +130,13 @@ const Navbar = () => {
                                         <Link
                                             to={item.path}
                                             className={cn(
-                                                'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:rounded-r-md hover:bg-gray-200 border-l-[3px] border-primary rounded-none group',
+                                                'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:bg-gray-200 border-l-[3px] rounded-none group',
                                                 location.pathname === item.path
                                                     ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md'
-                                                    : 'border-l-transparent rounded-md',
+                                                    : 'border-l-transparent rounded-md transition-all duration-300 hover:!ml-2',
                                             )}
                                             onClick={handleResetSearch}
+                                            key={item.path}
                                         >
                                             <item.icon
                                                 size={16}
@@ -174,16 +177,17 @@ const Navbar = () => {
                     </div>
                     <div className="w-full h-[1px] bg-gray-200 my-3" />
 
-                    <div>
-                        <p className="text-[12px] font-roboto text-primary mb-3 uppercase ">
+                    <div className='pr-2'>
+                        <p className="text-[12px] font-roboto text-primary mb-3 uppercase ml-2">
                             genreal
                         </p>
                         {menuOptions.general.map((item) => (
                             <Link
                                 to={item.path}
                                 className={
-                                    'flex items-center gap-2 my-1 cursor-pointer px-2 py-1.5 rounded-md hover:bg-white group'
+                                    'flex items-center gap-2 my-1 cursor-pointer px-2 py-1.5 rounded-md hover:bg-white group transition-all duration-300 hover:!ml-2'
                                 }
+                                key={item.path}
                             >
                                 <item.icon
                                     size={16}

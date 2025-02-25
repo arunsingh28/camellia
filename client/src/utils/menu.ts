@@ -1,4 +1,8 @@
-import { HomeIcon, LogOutIcon,User2, GraduationCap, History, MessageCircle, Workflow, Wallet2, LucideProps, Database } from "lucide-react";
+import { HomeIcon, LogOutIcon,User, GraduationCap,
+    //  History, 
+     MessageCircle,
+    //  Workflow,
+      Wallet2, LucideProps, Database } from "lucide-react";
 import { paths } from "@/router/path";
 
 
@@ -25,7 +29,7 @@ export const menuOptions: IMenuOptions = {
         },
         {
             name: "Teachers",
-            icon: User2,
+            icon: User,
             path: paths.APP.TEACHERS.INDEX,
         },
     ],
@@ -45,24 +49,24 @@ export const menuOptions: IMenuOptions = {
         {
             name: "Messages",
             icon: MessageCircle,
-            path: "/dashboard",
+            path: paths.APP.MESSAGES.INDEX,
         },
-        {
-            name: "Workflow",
-            icon: Workflow,
-            path: "/dashboard",
-        },
-        {
-            name: "History",
-            icon: History,
-            path: "/dashboard",
-        },
+        // {
+        //     name: "Workflow",
+        //     icon: Workflow,
+        //     path: "/dashboard",
+        // },
+        // {
+        //     name: "History",
+        //     icon: History,
+        //     path: "/dashboard",
+        // },
     ],
     general: [
         {
             name: "Logout",
             icon: LogOutIcon,
-            path: "/dashboard",
+            path: paths.APP.DASHBOARD,
         },
     ],
 };
