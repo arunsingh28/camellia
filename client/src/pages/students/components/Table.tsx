@@ -74,7 +74,7 @@ export interface DataType {
 
 const dataSource: DataType[] = [
     {
-        key: '1',
+        key: '1jjnb',
         name: 'Arun Pratap Singh',
         roll_no: 1,
         addmission_no: 'IPS001',
@@ -142,7 +142,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '2',
+        key: '20olp',
         name: 'Jane Smith',
         roll_no: 2,
         addmission_no: 'IPS9001',
@@ -275,7 +275,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '2',
+        key: '20',
         name: 'Jane Smith',
         roll_no: 2,
         addmission_no: 'IPS9001',
@@ -340,7 +340,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '1',
+        key: '10',
         name: 'Arun Pratap Singh',
         roll_no: 1,
         addmission_no: 'IPS001',
@@ -408,7 +408,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '2',
+        key: '200',
         name: 'Jane Smith',
         roll_no: 2,
         addmission_no: 'IPS9001',
@@ -473,7 +473,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '1',
+        key: '100',
         name: 'Arun Pratap Singh',
         roll_no: 1,
         addmission_no: 'IPS001',
@@ -541,7 +541,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '2',
+        key: '287',
         name: 'Jane Smith',
         roll_no: 2,
         addmission_no: 'IPS9001',
@@ -606,7 +606,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '1',
+        key: '1986',
         name: 'Arun Pratap Singh',
         roll_no: 1,
         addmission_no: 'IPS001',
@@ -674,7 +674,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '2',
+        key: '209',
         name: 'Jane Smith',
         roll_no: 2,
         addmission_no: 'IPS9001',
@@ -739,7 +739,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '1',
+        key: '091',
         name: 'Arun Pratap Singh',
         roll_no: 1,
         addmission_no: 'IPS001',
@@ -807,7 +807,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '2',
+        key: '265',
         name: 'Jane Smith',
         roll_no: 2,
         addmission_no: 'IPS9001',
@@ -872,7 +872,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '1',
+        key: '1lk',
         name: 'Arun Pratap Singh',
         roll_no: 1,
         addmission_no: 'IPS001',
@@ -940,7 +940,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '2',
+        key: '276j',
         name: 'Jane Smith',
         roll_no: 2,
         addmission_no: 'IPS9001',
@@ -1005,7 +1005,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '1',
+        key: '19uf',
         name: 'Arun Pratap Singh',
         roll_no: 1,
         addmission_no: 'IPS001',
@@ -1073,7 +1073,7 @@ const dataSource: DataType[] = [
         },
     },
     {
-        key: '2',
+        key: '09ht2',
         name: 'Jane Smith',
         roll_no: 2,
         addmission_no: 'IPS9001',

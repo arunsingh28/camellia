@@ -5,9 +5,11 @@ import { paths } from './path';
 const AppLayout = lazy(() => import('@/layouts/app.layout'));
 
 const Home = lazy(() => import('@/pages/dashboard'));
-const CreditScore = lazy(() => import('@/pages/credit-score'));
+const BillingUsage = lazy(() => import('@/pages/billing'));
 const MasterData = lazy(() => import('@/pages/master-data'));
 const Students = lazy(() => import('@/pages/students'));
+const Teachers = lazy(() => import('@/pages/teachers'));
+const Messages = lazy(() => import('@/pages/messages'));
 
 export const routes: RouteObject[] = [
     {
@@ -27,7 +29,7 @@ export const routes: RouteObject[] = [
             {
                 path: paths.APP.BILLING_USAGE,
                 element: <React.Suspense fallback={<div>Loading...</div>}>
-                    <CreditScore />
+                    <BillingUsage />
                 </React.Suspense>,
             },
             {
@@ -40,6 +42,18 @@ export const routes: RouteObject[] = [
                 path: paths.APP.STUDENTS.INDEX,
                 element: <React.Suspense fallback={<div>Loading...</div>}>
                     <Students />
+                </React.Suspense>,
+            },
+            {
+                path: paths.APP.TEACHERS.INDEX,
+                element: <React.Suspense fallback={<div>Loading...</div>}>
+                    <Teachers />
+                </React.Suspense>,
+            },
+            {
+                path: paths.APP.MESSAGES.INDEX,
+                element: <React.Suspense fallback={<div>Loading...</div>}>
+                    <Messages />
                 </React.Suspense>,
             }
         ],
