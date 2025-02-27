@@ -1,4 +1,4 @@
-import { Typography, Tabs, Button } from 'antd';
+import { Typography, Tabs, Button, Table } from 'antd';
 import type { TabsProps } from 'antd';
 import {
     MessageCircle,
@@ -7,8 +7,10 @@ import {
     Hourglass,
     CheckCheck,
     TriangleAlert,
-    MessageCirclePlus
+    MessageCirclePlus,
 } from 'lucide-react';
+
+import AllTable, { tableItems } from './tabs/allTable';
 
 const items: TabsProps['items'] = [
     {
@@ -18,7 +20,7 @@ const items: TabsProps['items'] = [
                 <Sigma size={20} /> All
             </span>
         ),
-        children: 'All Messages',
+        children: <AllTable />,
     },
     {
         key: '2',
@@ -27,7 +29,7 @@ const items: TabsProps['items'] = [
                 <DraftingCompass size={20} /> Draft
             </span>
         ),
-        children: 'Draft Messages',
+        children: <Table columns={tableItems} pagination={false} />,
     },
     {
         key: '3',
@@ -37,7 +39,7 @@ const items: TabsProps['items'] = [
                 Pending
             </span>
         ),
-        children: 'Pending Messages',
+        children: <Table columns={tableItems} pagination={false} />,
     },
     {
         key: '4',
@@ -47,7 +49,22 @@ const items: TabsProps['items'] = [
                 Approved
             </span>
         ),
-        children: 'Approved Messages',
+        children: (
+            <Table
+                columns={tableItems}
+                pagination={false}
+                dataSource={[
+                    {
+                        key: '1',
+                        name: 'welcome_message',
+                        category: 'UTILITY',
+                        status: 'Approved',
+                        type: 'TEXT',
+                        timestamp: '10 Feb 2025',
+                    },
+                ]}
+            />
+        ),
     },
     {
         key: '5',
@@ -57,22 +74,27 @@ const items: TabsProps['items'] = [
                 Action Required
             </span>
         ),
-        children: 'Action Required Messages',
+        children: <Table columns={tableItems} pagination={false} />,
     },
 ];
 
 const Messages = () => {
     return (
         <div className="p-2">
-            <div className='flex items-center justify-between'>
-            <Typography.Title
-                level={3}
-                className="!text-gray-700 flex items-center gap-1"
-            >
-                <MessageCircle size={24} />
-                Messages
-            </Typography.Title>
-            <Button className='bg-primary text-gray-50 hover:!bg-primary/90 hover:!text-white hover:!border-primary' icon={<MessageCirclePlus size={20}/>}>New Message</Button>
+            <div className="flex items-center justify-between">
+                <Typography.Title
+                    level={3}
+                    className="!text-gray-700 flex items-center gap-1"
+                >
+                    <MessageCircle size={24} />
+                    Messages
+                </Typography.Title>
+                <Button
+                    className="bg-primary text-gray-50 hover:!bg-primary/90 hover:!text-white hover:!border-primary"
+                    icon={<MessageCirclePlus size={20} />}
+                >
+                    New Message
+                </Button>
             </div>
             <Tabs defaultActiveKey="1" items={items} tabBarGutter={50} />
         </div>
