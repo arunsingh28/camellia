@@ -10,7 +10,7 @@ import {
     MessageCirclePlus,
 } from 'lucide-react';
 
-import AllTable, { tableItems } from './tabs/allTable';
+import { tableItems } from './tabs/allTable';
 
 const items: TabsProps['items'] = [
     {
@@ -20,7 +20,20 @@ const items: TabsProps['items'] = [
                 <Sigma size={20} /> All
             </span>
         ),
-        children: <AllTable />,
+        
+        children: <Table
+        columns={tableItems}
+        dataSource={[
+            {
+                key: '1',
+                name: 'welcome_message',
+                category: 'UTILITY',
+                status: 'Approved',
+                type: 'TEXT',
+                timestamp: '10 Feb 2025',
+            },
+        ]}
+    />
     },
     {
         key: '2',
@@ -29,7 +42,7 @@ const items: TabsProps['items'] = [
                 <DraftingCompass size={20} /> Draft
             </span>
         ),
-        children: <Table columns={tableItems} pagination={false} />,
+        children: <Table columns={tableItems} />,
     },
     {
         key: '3',
@@ -39,7 +52,7 @@ const items: TabsProps['items'] = [
                 Pending
             </span>
         ),
-        children: <Table columns={tableItems} pagination={false} />,
+        children: <Table columns={tableItems} />,
     },
     {
         key: '4',
@@ -52,7 +65,6 @@ const items: TabsProps['items'] = [
         children: (
             <Table
                 columns={tableItems}
-                pagination={false}
                 dataSource={[
                     {
                         key: '1',
@@ -74,7 +86,7 @@ const items: TabsProps['items'] = [
                 Action Required
             </span>
         ),
-        children: <Table columns={tableItems} pagination={false} />,
+        children: <Table columns={tableItems} />,
     },
 ];
 
@@ -96,7 +108,10 @@ const Messages = () => {
                     New Message
                 </Button>
             </div>
-            <Tabs defaultActiveKey="1" items={items} tabBarGutter={50} />
+            <Tabs defaultActiveKey="1" tabBarStyle={{
+                borderBottom: '1px solid #c0c0e8',
+               
+            }} items={items} tabBarGutter={50} />
         </div>
     );
 };
