@@ -72,7 +72,7 @@ const Messages = () => {
                 <MessageCircle size={24} />
                 Messages
             </Typography.Title>
-            <Button className='bg-primary text-gray-50 hover:!bg-primary/90 hover:!text-white hover:!border-primary' size='large' icon={<MessageCirclePlus size={20}/>}>New Message</Button>
+            <Button className='bg-primary text-gray-50 hover:!bg-primary/90 hover:!text-white hover:!border-primary' icon={<MessageCirclePlus size={20}/>}>New Message</Button>
             </div>
             <Tabs defaultActiveKey="1" items={items} tabBarGutter={50} />
         </div>
