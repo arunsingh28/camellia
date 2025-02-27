@@ -16,7 +16,7 @@ const topbar = () => {
                 </h1>
                 </div>
                <div className="flex items-center gap-5">
-                <Button type="primary" className="bg-primary border border-primary hover:!bg-primary/90 font-roboto  !rounded-lg" icon={<Settings size={16}/>} onClick={() => setOpen(true)}>Settings</Button>
+                <Button type="dashed" className="border border-primary font-roboto hover:!text-primary hover:!border-primary hover:!bg-gray-200 !rounded-lg" icon={<Settings size={16}/>} onClick={() => setOpen(true)}>Settings</Button>
                <Status/>
                <div className="w-[1px] h-[30px] bg-primary"/>
                <ProfileSettings />
