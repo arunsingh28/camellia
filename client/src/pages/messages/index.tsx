@@ -1,5 +1,4 @@
-import { Typography, Tabs, Button, Table } from 'antd';
-import type { TabsProps } from 'antd';
+import { Typography, Button, Table } from 'antd';
 import {
     MessageCircle,
     Sigma,
@@ -9,50 +8,19 @@ import {
     TriangleAlert,
     MessageCirclePlus,
 } from 'lucide-react';
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
 
-import AllTable, { tableItems } from './tabs/allTable';
+import { tableItems } from './tabs/allTable';
 
-const items: TabsProps['items'] = [
+
+const items = [
     {
-        key: '1',
-        label: (
-            <span className="flex items-center gap-2">
-                <Sigma size={20} /> All
-            </span>
-        ),
-        children: <AllTable />,
-    },
-    {
-        key: '2',
-        label: (
-            <span className="flex items-center gap-2">
-                <DraftingCompass size={20} /> Draft
-            </span>
-        ),
-        children: <Table columns={tableItems} pagination={false} />,
-    },
-    {
-        key: '3',
-        label: (
-            <span className="flex items-center gap-2">
-                <Hourglass size={20} />
-                Pending
-            </span>
-        ),
-        children: <Table columns={tableItems} pagination={false} />,
-    },
-    {
-        key: '4',
-        label: (
-            <span className="flex items-center gap-2">
-                <CheckCheck size={20} />
-                Approved
-            </span>
-        ),
+        id: '1',
+        label: 'All',
+        icon: <Sigma size={18} />,
         children: (
             <Table
                 columns={tableItems}
-                pagination={false}
                 dataSource={[
                     {
                         key: '1',
@@ -67,14 +35,42 @@ const items: TabsProps['items'] = [
         ),
     },
     {
-        key: '5',
-        label: (
-            <span className="flex items-center gap-2">
-                <TriangleAlert size={20} />
-                Action Required
-            </span>
+        id: '2',
+        label: 'Draft',
+        icon: <DraftingCompass size={18} />,
+        children: <Table columns={tableItems} />,
+    },
+    {
+        id: '3',
+        label: 'Pending',
+        icon: <Hourglass size={18} />,
+        children: <Table columns={tableItems} />,
+    },
+    {
+        id: '4',
+        label: 'Approved',
+        icon: <CheckCheck size={18} />,
+        children: (
+            <Table
+                columns={tableItems}
+                dataSource={[
+                    {
+                        key: '1',
+                        name: 'welcome_message',
+                        category: 'UTILITY',
+                        status: 'Approved',
+                        type: 'TEXT',
+                        timestamp: '10 Feb 2025',
+                    },
+                ]}
+            />
         ),
-        children: <Table columns={tableItems} pagination={false} />,
+    },
+    {
+        id: '5',
+        label: '  Action Required',
+        icon: <TriangleAlert size={18} />,
+        children: <Table columns={tableItems} />,
     },
 ];
 
@@ -96,7 +92,32 @@ const Messages = () => {
                     New Message
                 </Button>
             </div>
-            <Tabs defaultActiveKey="1" items={items} tabBarGutter={50} />
+            <TabGroup>
+                <TabList>
+                    {items.map((tab) => (
+                        <Tab key={tab.id} className="first:ml-0 mx-3">
+                            {({ selected }) => (
+                                <div
+                                    className={`flex items-center gap-2 mt-4 ${
+                                        selected
+                                            ? 'text-primary border-b-2 border-primary px-2 transition-all duration-150 pb-1 text-sm'
+                                            : 'text-gray-700 px-2 text-sm'
+                                    }`}
+                                >
+                                    {tab.icon}
+                                    {tab.label}
+                                </div>
+                            )}
+                        </Tab>
+                    ))}
+                </TabList>
+                <div className='h-[1px] w-full bg-primary'/>
+                <TabPanels className={"mt-5 transition-all"}>
+                    {items.map((tab) => (
+                        <TabPanel key={tab.id}>{tab.children}</TabPanel>
+                    ))}
+                </TabPanels>
+            </TabGroup>
         </div>
     );
 };
