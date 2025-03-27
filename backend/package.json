@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --env-file-if-exists=.env src/index.ts",
-    "lint": "eslint",
-    "mod": "nodemon prac.js"
+    "lint": "eslint"
   },
   "keywords": [],
   "author": "arunsingh28",
@@ -14,8 +13,9 @@
   "dependencies": {
     "@types/axios": "^0.14.4",
     "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
     "fastify": "^5.2.1",
-    "nodemon": "^3.1.9"
+    "yaml": "^2.7.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",

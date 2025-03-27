@@ -1,27 +1,13 @@
-// import fastify, { FastifyReply, FastifyRequest } from "fastify";
-// import WastappApi from "./utils/watsapp";
+import app from './app'
 
-// const app = fastify({
-//   logger: true
-// });
+const port = process.env.PORT || 3000;
 
-// const port = process.env.PORT || 3000;
-
-// (async () => {
-//   app.post("/",async (
-//       req: FastifyRequest<{ Body: { phone: string } }>,
-//       rep: FastifyReply
-//     ) => {
-//      try {
-//         const phones = [req.body.phone];
-//         const response = await WastappApi.sendBulkMessage(phones,'Hello');
-//         rep.send(response?.data);
-//      } catch (error) {
-//         rep.send({ error });
-//      }
-//     }
-//   );
-
-//   await app.listen({ port: Number(port), host: "localhost" });
-// })();
-
+(async()=>{
+    try {
+        await app.listen({port: Number(port),host: '0.0.0.0'})
+        app.log.info(`Server is running on port ${port}`)
+    } catch (error) {
+        app.log.error(error)
+        process.exit(1)
+    }
+})()
