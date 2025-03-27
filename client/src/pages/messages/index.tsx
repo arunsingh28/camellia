@@ -7,11 +7,23 @@ import {
     CheckCheck,
     TriangleAlert,
     MessageCirclePlus,
+    Bell,
+    Key,
+    Megaphone,
 } from 'lucide-react';
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
+import {
+    DialogTitle,
+    Tab,
+    TabGroup,
+    TabList,
+    TabPanel,
+    TabPanels,
+} from '@headlessui/react';
+import Modal from '@/components/modal';
 
 import { tableItems } from './tabs/allTable';
 
+import useModal from '@/hooks/useModal';
 
 const items = [
     {
@@ -75,6 +87,8 @@ const items = [
 ];
 
 const Messages = () => {
+    const { close, isOpen, open } = useModal();
+
     return (
         <div className="p-2">
             <div className="flex items-center justify-between">
@@ -88,8 +102,9 @@ const Messages = () => {
                 <Button
                     className="bg-primary text-gray-50 hover:!bg-primary/90 hover:!text-white hover:!border-primary"
                     icon={<MessageCirclePlus size={20} />}
+                    onClick={open}
                 >
-                    New Message
+                    New Template
                 </Button>
             </div>
             <TabGroup>
@@ -111,13 +126,78 @@ const Messages = () => {
                         </Tab>
                     ))}
                 </TabList>
-                <div className='h-[1px] w-full bg-primary'/>
-                <TabPanels className={"mt-5 transition-all"}>
+                <div className="h-[1px] w-full bg-primary" />
+                <TabPanels className={'mt-5 transition-all'}>
                     {items.map((tab) => (
                         <TabPanel key={tab.id}>{tab.children}</TabPanel>
                     ))}
                 </TabPanels>
             </TabGroup>
+            <Modal
+                isOpen={isOpen}
+                close={close}
+                key={'new_template_modal'}
+                width="5xl"
+                footer={
+                    <div className="flex gap-2 justify-end">
+                        <Button onClick={close} className="mr-2">
+                            Cancel
+                        </Button>
+                    </div>
+                }
+            >
+                <DialogTitle className="font-bold">
+                    Create new message template
+                </DialogTitle>
+                <div className="grid grid-cols-3 flex-wrap gap-4">
+                    <div className="border rounded-md p-2 flex flex-col justify-between">
+                        <p className="text-sm">
+                            Marketing is used for promotions or information
+                            about your business, product or service, or any
+                            message that isn't for utilityor authentication
+                            purposes. E.G. welcome messages, newsletters,
+                            offers, coupons, catelogues, new session start.
+                        </p>
+                        <Button
+                            className="bg-primary text-white mt-5 w-full"
+                            size="large"
+                            icon={<Megaphone size={18} className="mt-1" />}
+                        >
+                            Marketing
+                        </Button>
+                    </div>
+                    <div className="border rounded-md p-2 flex flex-col justify-between">
+                        <p className="text-sm">
+                            Utility is used for transaction, account, order or
+                            customer request E.g. order confirmations, acount
+                            updated, receipts, appointment reminders, billing.
+                            (Choose Marketing if you want to include promotion
+                            in the Utility message.)
+                        </p>
+                        <Button
+                            className="bg-primary text-white mt-5 w-full"
+                            size="large"
+                            icon={<Bell size={18} className="mt-1" />}
+                        >
+                            Utility
+                        </Button>
+                    </div>
+                    <div className="border rounded-md p-2 flex flex-col justify-between">
+                        <p className="text-sm">
+                            Authentication is used for one-off password that
+                            your students or teachers use to authenticate a
+                            transation or login.
+                        </p>
+                        <Button
+                            className="bg-primary text-white mt-5 w-full"
+                            size="large"
+                            icon={<Key size={18} className="mt-1" />}
+                        >
+                            Authentication
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 };

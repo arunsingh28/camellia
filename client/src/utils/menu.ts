@@ -2,7 +2,9 @@ import { HomeIcon, LogOutIcon,User, GraduationCap,
     //  History, 
      MessageCircle,
     //  Workflow,
-      Wallet2, LucideProps, Database } from "lucide-react";
+      Wallet2, LucideProps, Database, 
+      Workflow,
+      History} from "lucide-react";
 import { paths } from "@/router/path";
 
 
@@ -51,16 +53,16 @@ export const menuOptions: IMenuOptions = {
             icon: MessageCircle,
             path: paths.APP.MESSAGES.INDEX,
         },
-        // {
-        //     name: "Workflow",
-        //     icon: Workflow,
-        //     path: "/dashboard",
-        // },
-        // {
-        //     name: "History",
-        //     icon: History,
-        //     path: "/dashboard",
-        // },
+        {
+            name: "Workflow",
+            icon: Workflow,
+            path: "/dashboard",
+        },
+        {
+            name: "History",
+            icon: History,
+            path: "/dashboard",
+        },
     ],
     general: [
         {
