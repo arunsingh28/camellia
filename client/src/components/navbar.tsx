@@ -52,6 +52,7 @@ const Navbar = () => {
                             <SearchIcon size={16} className="text-gray-500" />
                         }
                         className="mx-2 w-[calc(100%-1rem)] rounded-md px-2 py-1 border border-gray-300 mb-4 text-sm focus:!border-primary focus:!ring-primary focus:!ring-1 active:!border-primary active:!ring-primary focus:!outline-none"
+                        value={search}
                         onChange={handleSearch}
                     />
                     {menuSections.map((section, index) => (

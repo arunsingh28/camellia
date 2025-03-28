@@ -1,4 +1,4 @@
-import { Typography, Button, Table } from 'antd';
+import { Typography, Button, Table, ConfigProvider } from 'antd';
 import {
     MessageCircle,
     Sigma,
@@ -135,16 +135,9 @@ const Messages = () => {
             </TabGroup>
             <Modal
                 isOpen={isOpen}
-                close={close}
+                onClose={close}
                 key={'new_template_modal'}
                 width="5xl"
-                footer={
-                    <div className="flex gap-2 justify-end">
-                        <Button onClick={close} className="mr-2">
-                            Cancel
-                        </Button>
-                    </div>
-                }
             >
                 <DialogTitle className="font-bold">
                     Create new message template
@@ -159,7 +152,8 @@ const Messages = () => {
                             offers, coupons, catelogues, new session start.
                         </p>
                         <Button
-                            className="bg-primary text-white mt-5 w-full"
+                        type='primary'
+                            className="mt-5 w-full"
                             size="large"
                             icon={<Megaphone size={18} className="mt-1" />}
                         >
@@ -175,7 +169,8 @@ const Messages = () => {
                             in the Utility message.)
                         </p>
                         <Button
-                            className="bg-primary text-white mt-5 w-full"
+                            type='primary'
+                            className="mt-5 w-full"
                             size="large"
                             icon={<Bell size={18} className="mt-1" />}
                         >
@@ -189,7 +184,8 @@ const Messages = () => {
                             transation or login.
                         </p>
                         <Button
-                            className="bg-primary text-white mt-5 w-full"
+                        type='primary'
+                            className=" mt-5 w-full"
                             size="large"
                             icon={<Key size={18} className="mt-1" />}
                         >

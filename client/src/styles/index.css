@@ -8,3 +8,13 @@
         format('truetype');
     font-weight: 100 200 300 400 500 600 700 800 900;
 }
+
+
+.ant-btn-primary{
+    background-color: #741b47;
+    border-color: #741b47;
+}
+.ant-btn-primary:hover{
+    background-color: #64153d !important;
+    border-color: #741b47;
+}
