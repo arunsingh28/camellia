@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
         await app.listen({port: Number(port),host: '0.0.0.0'})
         app.log.info(`Server is running on port ${port}`)
     } catch (error) {
-        app.log.error(error)
+        app.log.fatal(error)
         process.exit(1)
     }
 })()

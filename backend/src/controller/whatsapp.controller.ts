@@ -19,9 +19,8 @@ class WhatsappController {
         ""
       );
       return res.send(response.data);
-      // console.log(response.data)
     } catch (error: unknown) {
-      console.log((error as AxiosError).response?.data);
+      req.log.fatal((error as AxiosError).response?.data)
       return res.send({ error: (error as AxiosError).response?.data });
     }
   }
@@ -34,7 +33,7 @@ class WhatsappController {
       );
       return res.send(response.data);
     } catch (error: unknown) {
-      console.log((error as AxiosError).response?.data);
+      req.log.fatal((error as AxiosError).response?.data)
       return res.send({ error: (error as Error).message });
     }
   }
@@ -88,11 +87,10 @@ class WhatsappController {
                 
             ],
         }
-        console.log(template)
         const response = await this.whatsappApi.createTemplate(template)
         return res.send(response.data)
     } catch (error:unknown) {
-        console.log((error as AxiosError).response?.data);
+        req.log.fatal((error as AxiosError).response?.data)
         return res.send({ error: (error as Error).message });
     }
   }
