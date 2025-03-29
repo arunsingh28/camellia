@@ -9,7 +9,7 @@ const BillingUsage = lazy(() => import('@/pages/billing'));
 const MasterData = lazy(() => import('@/pages/master-data'));
 const Students = lazy(() => import('@/pages/students'));
 const Teachers = lazy(() => import('@/pages/teachers'));
-const Messages = lazy(() => import('@/pages/messages'));
+const Templates = lazy(() => import('@/pages/templates'));
 
 export const routes: RouteObject[] = [
     {
@@ -51,10 +51,18 @@ export const routes: RouteObject[] = [
                 </React.Suspense>,
             },
             {
-                path: paths.APP.MESSAGES.INDEX,
+                path: paths.APP.TEMPLATES.INDEX,
                 element: <React.Suspense fallback={<div>Loading...</div>}>
-                    <Messages />
+                    <Templates />
                 </React.Suspense>,
+                children: [
+                    {
+                        path: '?category=:categoryName',
+                        element: <React.Suspense fallback={<div>Loading...</div>}>
+                            <Templates />
+                        </React.Suspense>,
+                    }
+                ]
             }
         ],
     },

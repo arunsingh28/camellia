@@ -25,10 +25,10 @@ export class WhatsappApi {
       type: "template",
       template: {
         name: template_name,
-        language: { code: "en_US" },
+        language: { code: "en" },
         components: [
           {
-            type: "HEADER",
+            type: "BODY",
             parameters: [
               {
                 type: "text",

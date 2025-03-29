@@ -49,9 +49,9 @@ export const menuOptions: IMenuOptions = {
             path: paths.APP.MASTER_DATA.INDEX,
         },
         {
-            name: "Messages",
+            name: "Templates",
             icon: MessageCircle,
-            path: paths.APP.MESSAGES.INDEX,
+            path: paths.APP.TEMPLATES.INDEX,
         },
         {
             name: "Workflow",

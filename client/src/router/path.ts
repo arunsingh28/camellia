@@ -14,8 +14,8 @@ export const paths = {
     STAFF:{
       INDEX: '/staff',
     },
-    MESSAGES:{
-      INDEX: '/messages',
+    TEMPLATES:{
+      INDEX: '/templates',
     }
    },
    AUTH:{

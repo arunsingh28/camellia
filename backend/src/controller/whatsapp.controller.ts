@@ -14,15 +14,15 @@ class WhatsappController {
   async sendMessageWithTemplate(req: FastifyRequest, res: FastifyReply) {
     try {
       const response = await this.whatsappApi.sendTemplateMessage(
-        "welcome_message2",
+        "demo_with_appu",
         "917983613144",
-        "Arun"
+        ""
       );
       return res.send(response.data);
       // console.log(response.data)
     } catch (error: unknown) {
       console.log((error as AxiosError).response?.data);
-      return res.send({ error: (error as Error).message });
+      return res.send({ error: (error as AxiosError).response?.data });
     }
   }
 
