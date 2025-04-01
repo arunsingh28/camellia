@@ -1,4 +1,4 @@
-import { Typography, Button, Table, ConfigProvider } from 'antd';
+import { Typography, Button, Table } from 'antd';
 import {
     MessageCircle,
     Sigma,
@@ -20,10 +20,12 @@ import {
     TabPanels,
 } from '@headlessui/react';
 import Modal from '@/components/modal';
+import { useNavigate } from 'react-router-dom';
 
 import { tableItems } from './tabs/allTable';
 
 import useModal from '@/hooks/useModal';
+import { paths } from '@/router/path';
 
 const items = [
     {
@@ -87,7 +89,13 @@ const items = [
 ];
 
 const Messages = () => {
+    const navigate = useNavigate();
     const { close, isOpen, open } = useModal();
+
+    const redirecter = (type: string) => () => {
+        close();
+        navigate(`${paths.APP.TEMPLATES.CREATE}/${type}`);
+    };
 
     return (
         <div className="p-2">
@@ -100,7 +108,7 @@ const Messages = () => {
                     Messages
                 </Typography.Title>
                 <Button
-                    className="bg-primary text-gray-50 hover:!bg-primary/90 hover:!text-white hover:!border-primary"
+                    type="primary"
                     icon={<MessageCirclePlus size={20} />}
                     onClick={open}
                 >
@@ -152,10 +160,11 @@ const Messages = () => {
                             offers, coupons, catelogues, new session start.
                         </p>
                         <Button
-                        type='primary'
+                            type="primary"
                             className="mt-5 w-full"
                             size="large"
                             icon={<Megaphone size={18} className="mt-1" />}
+                            onClick={redirecter('marketing')}
                         >
                             Marketing
                         </Button>
@@ -169,10 +178,11 @@ const Messages = () => {
                             in the Utility message.)
                         </p>
                         <Button
-                            type='primary'
+                            type="primary"
                             className="mt-5 w-full"
                             size="large"
                             icon={<Bell size={18} className="mt-1" />}
+                            onClick={redirecter('utility')}
                         >
                             Utility
                         </Button>
@@ -184,10 +194,11 @@ const Messages = () => {
                             transation or login.
                         </p>
                         <Button
-                        type='primary'
+                            type="primary"
                             className=" mt-5 w-full"
                             size="large"
                             icon={<Key size={18} className="mt-1" />}
+                            onClick={redirecter('authentication')}
                         >
                             Authentication
                         </Button>

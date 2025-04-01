@@ -16,6 +16,7 @@ export const paths = {
     },
     TEMPLATES:{
       INDEX: '/templates',
+      CREATE: '/templates/create',
     }
    },
    AUTH:{

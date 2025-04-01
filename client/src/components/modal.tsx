@@ -25,7 +25,7 @@ const Modal: React.FC<ModalProps> = ({ children, isOpen, footer,width="lg", onCl
                 <div className="flex min-h-full items-center justify-center">
                     <DialogPanel
                         transition
-                        className={`max-w-${width} space-y-4 rounded-lg bg-white p-5 duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0 relative`}
+                        className={`max-w-${width ? width  :'5xl'} space-y-4 rounded-lg bg-white p-5 duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0 relative`}
                     >
                         <div className='absolute right-5 top-5 border rounded-md p-1 cursor-pointer hover:bg-gray-100' onClick={onClose}><X /></div>
                         {children}
