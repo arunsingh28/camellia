@@ -2,7 +2,7 @@ import camelliaLogo from '@/assets/camellia-logo.png'
 
 const Header = () => {
   return (
-    <div className='bg-[#0b5f56] rounded-t-lg p-[8px] flex items-center gap-2 sticky top-0'>
+    <div className='bg-[#0b5f56] rounded-t-lg p-[8px] flex items-center gap-2'>
         <img 
         src={camelliaLogo}
         alt='Camellia Logo'
