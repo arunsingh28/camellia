@@ -1,5 +1,7 @@
 import Fallback from '@/components/fallback';
 import { paths } from '@/router/path';
+import { Breadcrumb } from 'antd';
+import {ChevronRightIcon} from 'lucide-react'
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PhoneLayout from './phoneLayout';
@@ -53,7 +55,24 @@ const Index = () => {
     return (
         <React.Suspense fallback={<Fallback/>}>
            <div className='flex flex-col md:flex-row w-full h-full'>
-            <div className='w-full'>{renderComponent()}</div>
+            <div className='w-full'>
+                <Breadcrumb 
+                className='px-5 py-4 text-xl font-semibold text-gray-800'
+                separator={<ChevronRightIcon className='mt-0.5' strokeWidth={1.2}/>}
+                items={[
+                    {
+                        title: 'Templates',
+                        href: paths.APP.TEMPLATES.INDEX,
+                    },
+                    {
+                        title: category.charAt(0).toUpperCase() + category.slice(1),
+                        href: paths.APP.TEMPLATES[category.toUpperCase() as keyof typeof paths.APP.TEMPLATES],
+                        // className: 'text-primary',
+                    }
+                ]}
+                />
+                {renderComponent()}
+            </div>
             <PhoneLayout />
            </div> 
         </React.Suspense>
