@@ -2,8 +2,19 @@ import Fallback from '@/components/fallback';
 import { paths } from '@/router/path';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import PhoneLayout from './phoneLayout';
 
 type Category = 'marketing' | 'utility' | 'authentication';
+
+const Marketing = React.lazy(() => import('./marketing'));
+const Utility = React.lazy(() => import('./utility'));
+const Authentication = React.lazy(() => import('./authentication'));
+
+const components = {
+    marketing: Marketing,
+    utility: Utility,
+    authentication: Authentication,
+};
 
 const Index = () => {
     const location = useLocation();
@@ -28,19 +39,23 @@ const Index = () => {
 
     const renderComponent = (): React.ReactNode => {
         switch (category) {
-            case 'marketing':
-                return <div>Marketing Component</div>;
-            case 'utility':
-                return <div>Utility Component</div>;
-            case 'authentication':
-                return <div>Authentication Component</div>;
-             default: return null   
+               case 'marketing':
+                    return <components.marketing />;
+                case 'utility':
+                    return <components.utility />;
+                case 'authentication':
+                    return <components.authentication />;
+                default:
+                    return null;  
         }
     };
 
     return (
         <React.Suspense fallback={<Fallback/>}>
-            {renderComponent()}
+           <div className='flex flex-col md:flex-row w-full h-full'>
+            <div className='w-full'>{renderComponent()}</div>
+            <PhoneLayout />
+           </div> 
         </React.Suspense>
     );
 };
