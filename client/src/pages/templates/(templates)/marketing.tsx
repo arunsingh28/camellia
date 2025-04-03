@@ -121,7 +121,31 @@ const marketing = () => {
                                 size="large"
                             />
                         </div>
+                        <div className="flex flex-col gap-2 w-full">
+                            <label className="text-sm text-gray-800">
+                                Footer
+                            </label>
+                            <Input
+                                placeholder="Enter text"
+                                className="w-full rounded-lg focus:border-primary hover:border-primary focus:outline-none"
+                                allowClear
+                                showCount
+                                count={{
+                                    max: 60,
+                                }}
+                                size="large"
+                            />
+                        </div>
                     </div>
+                </div>
+                <div className="w-full bg-white py-5 px-4 rounded-lg border-2 border-[#E0E0E0]">
+                    <h2 className="text-lg font-semibold">Buttons</h2>
+                    <p className="text-sm text-gray-500">
+                        Create buttons that let customers respond to your
+                        message or take action. You can add up to ten buttons.
+                        If you add more than three buttons, they will appear in
+                        a list.
+                    </p>
                 </div>
             </div>
         </div>

@@ -120,7 +120,7 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
                     to={item.path}
                     className={cn(
                         'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:bg-gray-200 border-l-[3px] rounded-none group',
-                        location.pathname === item.path
+                        location.pathname === item.path 
                             ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md transition-all duration-300'
                             : 'border-l-transparent rounded-md transition-all duration-300 hover:!ml-2',
                     )}
