@@ -8,6 +8,9 @@
     "lint": "eslint",
     "tunnel": "ngrok http --domain=chief-garfish-formerly.ngrok-free.app 9210"
   },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "keywords": [],
   "author": "arunsingh28",
   "license": "ISC",

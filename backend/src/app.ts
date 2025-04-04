@@ -3,7 +3,7 @@ import multipart from "@fastify/multipart";
 
 import whatsappRoutes from "./routes/whatsapp.routes";
 import whatsappWebhookRoutes from "./routes/webhook.routes";
-import uploadRoutes from "./routes/upload.routes";
+import uploadRoutes from './routes/upload.routes';
 
 import mongoPlugin from "./plugins/mongo";
 
