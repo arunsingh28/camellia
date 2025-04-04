@@ -24,6 +24,9 @@ interface IConfig {
     ROOT_TOKEN: string;
     TESTING_WHATSAPP_BUSINESS_NUMBER_ID: number;
   };
+  server:{
+    TOKEN: string
+  }
 }
 
 export const config: IConfig = {
@@ -48,6 +51,9 @@ export const config: IConfig = {
     ROOT_TOKEN: process.env.ROOT_TOKEN || "",
     TESTING_WHATSAPP_BUSINESS_NUMBER_ID: Number(process.env.TESTING_WHATSAPP_BUSINESS_NUMBER_ID),
   },
+  server:{
+    TOKEN: process.env.SERVER_TOKEN || "",
+  }
 };
 
 

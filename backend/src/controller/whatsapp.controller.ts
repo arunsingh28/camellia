@@ -16,7 +16,7 @@ class WhatsappController {
       const response = await this.whatsappApi.sendTemplateMessage(
         "demo_with_appu",
         "917983613144",
-        ""
+        "Arun"
       );
       return res.send(response.data);
     } catch (error: unknown) {
