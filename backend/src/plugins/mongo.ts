@@ -17,13 +17,13 @@ export default fp(async (fastify) => {
     });
 
   // index
-  await mongoose.connection.collection("students").createIndex(
-    {
-      school_id: 1,
-      student_addmission_number: 1,
-    },
-    { unique: true }
-  );
+  // await mongoose.connection.collection("students").createIndex(
+  //   {
+  //     school_id: 1,
+  //     student_addmission_number: 1,
+  //   },
+  //   { unique: true }
+  // )
 
   fastify.decorate("mongo", {
     mongoose,
