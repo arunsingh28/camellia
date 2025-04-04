@@ -7,7 +7,10 @@ interface IConfig {
   port: string;
   db: {
     postgress: {};
-    mongoURI: string;
+    mongo: {
+      MONGO_URI: string;
+      MONGO_DB_NAME: string;
+    };
   };
   jwt: {
     secret: string;
@@ -24,16 +27,19 @@ interface IConfig {
     ROOT_TOKEN: string;
     TESTING_WHATSAPP_BUSINESS_NUMBER_ID: number;
   };
-  server:{
-    TOKEN: string
-  }
+  server: {
+    TOKEN: string;
+  };
 }
 
 export const config: IConfig = {
   port: process.env.PORT || "3000",
   db: {
     postgress: {},
-    mongoURI: process.env.MONGO_URI || "mongodb://localhost:27017/whatsapp",
+    mongo: {
+      MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/whatsapp",
+      MONGO_DB_NAME: process.env.MONGO_DB_NAME || "whatsapp",
+    },
   },
   jwt: {
     secret: process.env.JWT_SECRET || "",
@@ -49,17 +55,18 @@ export const config: IConfig = {
     WHATSAPP_API_URL: process.env.ENDPOINT || "",
     WHATSAPP_API_VERSION: process.env.VERSION || "",
     ROOT_TOKEN: process.env.ROOT_TOKEN || "",
-    TESTING_WHATSAPP_BUSINESS_NUMBER_ID: Number(process.env.TESTING_WHATSAPP_BUSINESS_NUMBER_ID),
+    TESTING_WHATSAPP_BUSINESS_NUMBER_ID: Number(
+      process.env.TESTING_WHATSAPP_BUSINESS_NUMBER_ID
+    ),
   },
-  server:{
+  server: {
     TOKEN: process.env.SERVER_TOKEN || "",
-  }
+  },
 };
-
 
 export enum Template {
   AUTHENTICATION = "AUTHENTICATION",
   MARKETING = "MARKETING",
   UTILITY = "UTILITY",
-  TRANSACTIONAL = "TRANSACTIONAL"
+  TRANSACTIONAL = "TRANSACTIONAL",
 }
