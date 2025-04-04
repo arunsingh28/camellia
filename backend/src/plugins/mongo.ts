@@ -15,7 +15,16 @@ export default fp(async (fastify) => {
       fastify.log.fatal("MongoDB connection error", err);
       throw err;
     });
-    
+
+  // index
+  await mongoose.connection.collection("students").createIndex(
+    {
+      school_id: 1,
+      student_addmission_number: 1,
+    },
+    { unique: true }
+  );
+
   fastify.decorate("mongo", {
     mongoose,
     db: mongoose.connection,

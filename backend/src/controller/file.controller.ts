@@ -25,7 +25,7 @@ class UploadController {
               options: { ordered: false },
             },
           }))
-        );
+        )
       return res.status(200).send({
         message: "File uploaded successfully",
         data: students,

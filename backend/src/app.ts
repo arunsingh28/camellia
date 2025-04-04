@@ -9,40 +9,41 @@ import studentRoutes from "./routes/student.routes";
 import mongoPlugin from "./plugins/mongo";
 
 const app = fastify({
-  logger: {
-    level: "info",
-    enabled: true,
-    customLevels: {
-      fatal: 60,
-      error: 50,
-      warn: 40,
-      info: 30,
-      debug: 20,
-      trace: 10,
-    },
-    mixin() {
-      return {
-        app_name: "Camellia",
-        env: process.env.NODE_ENV,
-      };
-    },
-    formatters: {
-      level(label, number) {
-        return { level: label, level_number: number };
-      },
-      bindings(bindings) {
-        return {
-          pid: bindings.pid,
-          hostname: bindings.hostname,
-          app_name: bindings.app_name,
-          env: bindings.env,
-        };
-      },
-    },
-    base: {
-      timestamp: () => `,"time":"${new Date(Date.now()).toISOString()}"`,
-    },
-  },
+  logger: false
+  // {
+  //   level: "info",
+  //   enabled: true,
+  //   customLevels: {
+  //     fatal: 60,
+  //     error: 50,
+  //     warn: 40,
+  //     info: 30,
+  //     debug: 20,
+  //     trace: 10,
+  //   },
+  //   mixin() {
+  //     return {
+  //       app_name: "Camellia",
+  //       env: process.env.NODE_ENV,
+  //     };
+  //   },
+  //   formatters: {
+  //     level(label, number) {
+  //       return { level: label, level_number: number };
+  //     },
+  //     bindings(bindings) {
+  //       return {
+  //         pid: bindings.pid,
+  //         hostname: bindings.hostname,
+  //         app_name: bindings.app_name,
+  //         env: bindings.env,
+  //       };
+  //     },
+  //   },
+  //   base: {
+  //     timestamp: () => `,"time":"${new Date(Date.now()).toISOString()}"`,
+  //   },
+  // },
 });
 
 // middleware
@@ -78,5 +79,6 @@ app.setErrorHandler((error: Error, req: FastifyRequest, res: FastifyReply) => {
     message: error.message,
   });
 });
+
 
 export default app;
