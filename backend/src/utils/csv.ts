@@ -2,7 +2,7 @@ import { FastifyReply } from "fastify";
 import { parse } from "fast-csv";
 import type { MultipartFile } from "@fastify/multipart";
 
-class CSV_Extractor {
+class CSV {
   parseCSV<T = {}>(file: MultipartFile, res: FastifyReply): Promise<T[]> {
     return new Promise((resolve, reject) => {
       const data: T[] = [];
@@ -27,6 +27,11 @@ class CSV_Extractor {
         });
     });
   }
+
+  createCSV(data: any[], fileName: string): void {
+    // Implementation for creating a CSV file
+    
+  }
 }
 
-export default new CSV_Extractor();
+export default new CSV();

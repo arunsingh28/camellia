@@ -3,7 +3,8 @@ import multipart from "@fastify/multipart";
 
 import whatsappRoutes from "./routes/whatsapp.routes";
 import whatsappWebhookRoutes from "./routes/webhook.routes";
-import uploadRoutes from './routes/upload.routes';
+import uploadRoutes from './routes/file.routes';
+import studentRoutes from "./routes/student.routes";
 
 import mongoPlugin from "./plugins/mongo";
 
@@ -57,7 +58,8 @@ app.register(mongoPlugin, {
 // routes
 app.register(whatsappRoutes.routes, { prefix: "/api/v1/whatsapp" });
 app.register(whatsappWebhookRoutes.routes, { prefix: "/api/v1/webhook" });
-app.register(uploadRoutes.routes, { prefix: "/api/v1/upload" });
+app.register(uploadRoutes.routes, { prefix: "/api/v1/file" });
+app.register(studentRoutes.routes, { prefix: "/api/v1/student" });
 
 app.setNotFoundHandler((req: FastifyRequest, res: FastifyReply) => {
   req.log.error("Route not found");
@@ -67,6 +69,7 @@ app.setNotFoundHandler((req: FastifyRequest, res: FastifyReply) => {
     message: "Route not found",
   });
 });
+
 app.setErrorHandler((error: Error, req: FastifyRequest, res: FastifyReply) => {
   req.log.error(error);
   res.status(500).send({
