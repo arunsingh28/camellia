@@ -58,7 +58,8 @@ app.setNotFoundHandler((req: FastifyRequest, res: FastifyReply) => {
 });
 
 app.setErrorHandler((error: Error, req: FastifyRequest, res: FastifyReply) => {
-  req.log.error(error);
+  // req.log.error(error);
+  console.log(error)
   res.status(500).send({
     statusCode: 500,
     error: "Internal Server Error",
