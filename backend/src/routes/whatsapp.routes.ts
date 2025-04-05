@@ -6,6 +6,7 @@ class WhatsappRouter{
         fastify.post('/send-message-with-template', WhatsappController.sendMessageWithTemplate)
         fastify.post('/send-text-message', WhatsappController.sendTextMessage)
         fastify.post('/create-template', WhatsappController.createTemplate)
+        fastify.get('/get-all-templates', WhatsappController.getAllTemplates)
     }
 }
 

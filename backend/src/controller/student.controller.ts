@@ -12,9 +12,13 @@ class StudentsController {
       const collection = mongoose.connection.collection("students");
       const totalStudents = await collection.countDocuments({ school_id });
       const students = await collection
-        .find({ school_id }, { projection: { _id: 0 ,school_id: 0} })
-        .skip((+current - 1) * +pageSize)
-        .limit(+pageSize)
+        .aggregate([
+          { $match: { school_id } },
+          { $skip: (+current - 1) * +pageSize },
+          { $limit: +pageSize },
+          { $addFields: { student_id: { $toString: "$_id" } } },
+          { $unset: ["_id"] },
+        ])
         .toArray();
 
       return res.status(200).send({

@@ -1,4 +1,6 @@
 export interface IStudents {
+    student_id?: string;
+    isArchive?: boolean;
     school_id: string;
     student_addmission_number: string;
     student_name: string;

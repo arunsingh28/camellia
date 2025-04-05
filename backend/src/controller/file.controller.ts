@@ -65,7 +65,11 @@ class UploadController {
                 school_id: student.school_id,
                 student_addmission_number: student.student_addmission_number,
               },
-              replacement: student,
+              replacement: {
+                ...student,
+                updatedAt: new Date(),
+                createdAt: new Date(),
+              },
               upsert: true,
             },
           })),

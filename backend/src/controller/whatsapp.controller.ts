@@ -9,6 +9,7 @@ class WhatsappController {
     this.sendMessageWithTemplate = this.sendMessageWithTemplate.bind(this);
     this.sendTextMessage = this.sendTextMessage.bind(this);
     this.createTemplate = this.createTemplate.bind(this);
+    this.getAllTemplates = this.getAllTemplates.bind(this);
   }
 
   async sendMessageWithTemplate(req: FastifyRequest, res: FastifyReply) {
@@ -92,6 +93,16 @@ class WhatsappController {
     } catch (error:unknown) {
         req.log.fatal((error as AxiosError).response?.data)
         return res.send({ error: (error as Error).message });
+    }
+  }
+
+  async getAllTemplates(req: FastifyRequest, res: FastifyReply) {
+    try {
+      const response = await this.whatsappApi.getTemplates();
+      return res.send(response.data);
+    } catch (error: unknown) {
+      req.log.fatal((error as AxiosError).response?.data)
+      return res.send({ error: (error as Error).message });
     }
   }
 

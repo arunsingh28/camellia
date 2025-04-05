@@ -1,5 +1,6 @@
 import axios from "axios";
 import { config } from "../config/config";
+import { WhatsAppTemplateResponse } from "../types/whatsapp";
 
 const axiosInstance = axios.create({
   baseURL: `${config.whatsapp.WHATSAPP_API_URL}${config.whatsapp.WHATSAPP_API_VERSION}/${config.whatsapp.TESTING_WHATSAPP_BUSINESS_NUMBER_ID}`,
@@ -73,6 +74,10 @@ export class WhatsappApi {
 
   async deleteTemplateByName(template_name: string) {
     return await axiosTemplateInstance.delete(`/message_templates?name=${template_name}`);
+  }
+
+  async getTemplates(){
+    return await axiosTemplateInstance.get<WhatsAppTemplateResponse>(`/message_templates`);
   }
 
   // async updateTemplateById(template_id: string, templateData: any) {
