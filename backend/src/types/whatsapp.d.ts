@@ -70,3 +70,29 @@ export interface WhatsAppTemplateResponse {
     example: string;
   }
   
+
+  interface FlowScreen {
+    id: string;
+    layout: object;
+    title?: string;
+    terminal?: boolean;
+    success?: boolean;
+    data?: object;
+  }
+  
+  interface RoutingModel {
+    [screenId: string]: {
+      next: string[];
+    };
+  }
+  
+  export interface CreateFlowParams {
+    name: string;
+    description: string;
+    screens: FlowScreen[];
+    routingModel: RoutingModel;
+    dataApiVersion?: string;
+    endpointUrl?: string;
+  }
+  
+  

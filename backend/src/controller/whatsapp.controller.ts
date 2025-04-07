@@ -1,10 +1,16 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { WhatsappApi } from "../services/watsapp";
 import { AxiosError } from "axios";
-import { Template } from "../config/config";
+import { config,Template } from "../config/config";
 
 class WhatsappController {
-  whatsappApi = new WhatsappApi();
+  whatsappApi = new WhatsappApi({
+    accessToken: config.whatsapp.ROOT_TOKEN,
+    apiUrl: config.whatsapp.WHATSAPP_API_URL,
+    apiVersion: config.whatsapp.WHATSAPP_API_VERSION,
+    businessNumberId: config.whatsapp.SENDER_NUMBER_ID.toString(),
+    businessAccountId: config.whatsapp.WHATSAPP_BUSINESS_ACCOUNT_ID.toString(),
+  });
   constructor() {
     this.sendMessageWithTemplate = this.sendMessageWithTemplate.bind(this);
     this.sendTextMessage = this.sendTextMessage.bind(this);
@@ -15,7 +21,7 @@ class WhatsappController {
   async sendMessageWithTemplate(req: FastifyRequest, res: FastifyReply) {
     try {
       const response = await this.whatsappApi.sendTemplateMessage(
-        "demo_with_appu",
+        "onbording_ips_flow",
         "917983613144",
         "Arun"
       );
@@ -103,6 +109,16 @@ class WhatsappController {
     } catch (error: unknown) {
       req.log.fatal((error as AxiosError).response?.data)
       return res.send({ error: (error as Error).message });
+    }
+  }
+
+  async createFlow(req: FastifyRequest, res: FastifyReply) {
+    try {
+        const response = await this.whatsappApi.createFlow({
+          
+        })
+    } catch (error) {
+      
     }
   }
 
