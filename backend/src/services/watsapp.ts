@@ -1,5 +1,12 @@
 import axios, { AxiosInstance } from "axios";
-import { CreateFlowParams, WhatsAppTemplateResponse } from "../types/whatsapp";
+import {
+  CreateFlowParams,
+  WhatsAppTemplateResponse,
+  WhatsAppTextMessageResponse,
+  SenderInput,
+  NamedVariable,
+  PositionalVariable,
+} from "../types/whatsapp";
 
 interface WhatsappApiOptions {
   apiUrl: string; // e.g. https://graph.facebook.com/
@@ -35,28 +42,82 @@ export class WhatsappApi {
     this.getTemplates = this.getTemplates.bind(this);
   }
 
-  async sendTemplateMessage(template_name: string, to: string, name?: string) {
-    return await this.axiosInstance.post(`/messages`, {
-      messaging_product: "whatsapp",
-      to: to,
-      type: "template",
-      template: {
-        name: template_name,
-      },
-      recipient_type: "individual",
+  async sendTemplateMessage(
+    template_name: string,
+    senderList: SenderInput[]
+  ): Promise<WhatsAppTextMessageResponse[]> {
+    if (!Array.isArray(senderList) || senderList.length === 0) {
+      throw new Error("senderList must be a non-empty array");
+    }
+    const promises = senderList.map((sender) => {
+      const components: any[] = [];
+
+      const createComponent = (
+        type: "header" | "body",
+        variables?: NamedVariable[] | PositionalVariable[]
+      ) => {
+        if (!variables || variables.length === 0) return;
+
+        const isNamed = sender.paramMode === "NAMED_PARAMETER_INPUT";
+
+        components.push({
+          type,
+          parameters: variables.map((param: any) => {
+            const base = { type: "text" };
+            if (isNamed) {
+              return {
+                ...base,
+                parameter_name: param.parameter_name,
+                text: param.text.toString(),
+              };
+            } else {
+              return {
+                ...base,
+                text: param.text.toString(),
+              };
+            }
+          }),
+        });
+      };
+
+      createComponent("header", sender.headerVariables);
+      createComponent("body", sender.bodyVariables);
+
+      const payload = {
+        messaging_product: "whatsapp",
+        to: sender.phone_number,
+        type: "template",
+        template: {
+          name: template_name,
+          language: {
+            code: sender.languageCode || "en_US",
+          },
+          ...(components.length > 0 ? { components } : {}),
+        },
+      };
+
+      console.log("Payload", payload);
+
+      return this.axiosInstance
+        .post<WhatsAppTextMessageResponse>(`/messages`, payload)
+        .then((response) => response.data);
     });
+    return await Promise.all(promises);
   }
 
   async sendTextMessage(text: string, to: string) {
-    return await this.axiosInstance.post(`/messages`, {
-      messaging_product: "whatsapp",
-      to: to,
-      type: "text",
-      text: {
-        body: text,
-      },
-      recipient_type: "individual",
-    });
+    return await this.axiosInstance.post<WhatsAppTextMessageResponse>(
+      `/messages`,
+      {
+        messaging_product: "whatsapp",
+        to: to,
+        type: "text",
+        text: {
+          body: text,
+        },
+        recipient_type: "individual",
+      }
+    );
   }
 
   async createTemplate(templateData: any) {
