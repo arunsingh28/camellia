@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --env-file-if-exists=.env src/index.ts",
+    "build": "tsc",
     "lint": "eslint",
     "tunnel": "ngrok http --domain=chief-garfish-formerly.ngrok-free.app 9210"
   },
