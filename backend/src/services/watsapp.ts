@@ -16,7 +16,7 @@ interface WhatsappApiOptions {
   accessToken: string;
 }
 
-export class WhatsappApi {
+export class WhatsappApiSDK {
   private axiosInstance: AxiosInstance;
   private axiosTemplateInstance: AxiosInstance;
 
@@ -40,6 +40,8 @@ export class WhatsappApi {
     this.createTemplate = this.createTemplate.bind(this);
     this.deleteTemplateByName = this.deleteTemplateByName.bind(this);
     this.getTemplates = this.getTemplates.bind(this);
+    this.createFlow = this.createFlow.bind(this);
+    this.markMessageRead = this.markMessageRead.bind(this);
   }
 
   async sendTemplateMessage(
@@ -151,5 +153,14 @@ export class WhatsappApi {
       flow_json: flowJson,
     };
     return await this.axiosTemplateInstance.post(`/flows`, payload);
+  }
+
+  async markMessageRead(message_id:string){
+    const paylaod = {
+      messaging_product: 'whatsapp',
+      status: "read",
+      message_id: message_id
+    }
+    return await this.axiosInstance.post<{success: string}>('/messages',paylaod)
   }
 }

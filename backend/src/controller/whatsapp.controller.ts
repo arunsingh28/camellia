@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { WhatsappApi } from "../services/watsapp";
+import { WhatsappApiSDK } from "../services/watsapp";
 import { AxiosError } from "axios";
 import { config, Template } from "../config/config";
 import { isWhatsAppApiError } from "../utils/whatsapp_errors";
@@ -7,7 +7,7 @@ import { isWhatsAppApiError } from "../utils/whatsapp_errors";
 import { PositionalVariable } from "../types/whatsapp";
 
 class WhatsappController {
-  whatsappApi = new WhatsappApi({
+  whatsappApi = new WhatsappApiSDK({
     accessToken: config.whatsapp.ROOT_TOKEN,
     apiUrl: config.whatsapp.WHATSAPP_API_URL,
     apiVersion: config.whatsapp.WHATSAPP_API_VERSION,
@@ -19,6 +19,7 @@ class WhatsappController {
     this.sendTextMessage = this.sendTextMessage.bind(this);
     this.createTemplate = this.createTemplate.bind(this);
     this.getAllTemplates = this.getAllTemplates.bind(this);
+    this.createFlow = this.createFlow.bind(this);
   }
 
   async sendMessageWithTemplate(req: FastifyRequest, res: FastifyReply) {
