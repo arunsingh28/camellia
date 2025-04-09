@@ -1,4 +1,8 @@
 import axios, { AxiosInstance } from "axios";
+import FormData from "form-data";
+import { Readable } from "stream";
+import type { MultipartFile } from "@fastify/multipart";
+
 import {
   CreateFlowParams,
   WhatsAppTemplateResponse,
@@ -6,6 +10,7 @@ import {
   SenderInput,
   NamedVariable,
   PositionalVariable,
+  SendMediaMessageParams,
 } from "../types/whatsapp";
 
 interface WhatsappApiOptions {
@@ -42,6 +47,8 @@ export class WhatsappApiSDK {
     this.getTemplates = this.getTemplates.bind(this);
     this.createFlow = this.createFlow.bind(this);
     this.markMessageRead = this.markMessageRead.bind(this);
+    this.uploadMedia = this.uploadMedia.bind(this);
+    this.sendMediaMessage = this.sendMediaMessage.bind(this);
   }
 
   async sendTemplateMessage(
@@ -97,9 +104,6 @@ export class WhatsappApiSDK {
           ...(components.length > 0 ? { components } : {}),
         },
       };
-
-      console.log("Payload", payload);
-
       return this.axiosInstance
         .post<WhatsAppTextMessageResponse>(`/messages`, payload)
         .then((response) => response.data);
@@ -107,10 +111,23 @@ export class WhatsappApiSDK {
     return await Promise.all(promises);
   }
 
-  async sendTextMessage(text: string, to: string) {
-    return await this.axiosInstance.post<WhatsAppTextMessageResponse>(
-      `/messages`,
-      {
+  async sendTextMessage(
+    text: string,
+    to: string
+  ): Promise<WhatsAppTextMessageResponse> {
+    if (!text || !to) {
+      throw new Error("Text and recipient number are required");
+    }
+    if (!/^\d+$/.test(to)) {
+      throw new Error("Recipient number must be a valid phone number");
+    }
+    if (text.length > 1024) {
+      throw new Error(
+        "Text message exceeds the maximum length of 4096 characters"
+      );
+    }
+    return await this.axiosInstance
+      .post<WhatsAppTextMessageResponse>(`/messages`, {
         messaging_product: "whatsapp",
         to: to,
         type: "text",
@@ -118,8 +135,8 @@ export class WhatsappApiSDK {
           body: text,
         },
         recipient_type: "individual",
-      }
-    );
+      })
+      .then((response) => response.data);
   }
 
   async createTemplate(templateData: any) {
@@ -132,10 +149,10 @@ export class WhatsappApiSDK {
     );
   }
 
-  async getTemplates() {
-    return await this.axiosTemplateInstance.get<WhatsAppTemplateResponse>(
-      `/message_templates`
-    );
+  async getTemplates(): Promise<WhatsAppTemplateResponse> {
+    return await this.axiosTemplateInstance
+      .get<WhatsAppTemplateResponse>(`/message_templates`)
+      .then((response) => response.data);
   }
 
   async createFlow(params: CreateFlowParams) {
@@ -155,12 +172,75 @@ export class WhatsappApiSDK {
     return await this.axiosTemplateInstance.post(`/flows`, payload);
   }
 
-  async markMessageRead(message_id:string){
+  async markMessageRead(message_id: string) {
     const paylaod = {
-      messaging_product: 'whatsapp',
+      messaging_product: "whatsapp",
       status: "read",
-      message_id: message_id
+      message_id: message_id,
+    };
+    return await this.axiosInstance.post<{ success: string }>(
+      "/messages",
+      paylaod
+    );
+  }
+
+  async uploadMedia(media: MultipartFile): Promise<{ id: string }> {
+    if (!media) {
+      throw new Error("Media is required");
     }
-    return await this.axiosInstance.post<{success: string}>('/messages',paylaod)
+    const stream = Readable.from(media.file);
+    const form = new FormData();
+    form.append("file", stream, {
+      filename: media.filename,
+      contentType: media.mimetype,
+    });
+    form.append("messaging_product", "whatsapp");
+    console.log("Form data", form);
+    return await this.axiosInstance
+      .post<{ id: string }>("/media", form, {
+        headers: form.getHeaders(),
+      })
+      .then((response) => response.data);
+  }
+
+  async sendMediaMessage(
+    props: SendMediaMessageParams
+  ): Promise<WhatsAppTextMessageResponse> {
+    if (!props) {
+      throw new Error("Media is required");
+    }
+
+    const payload: any = {
+      messaging_product: "whatsapp",
+      to: props.to,
+      type: "",
+      recipient_type: "individual",
+    };
+
+    if (props.media) {
+      payload.type = props.media.type;
+
+      if (props.media.type === "image") {
+        payload.image = {
+          id: props.media.mediaId,
+          ...(props.media.caption ? { caption: props.media.caption } : {}),
+        };
+      } else if (props.media.type === "document") {
+        payload.document = {
+          id: props.media.mediaId,
+          ...(props.media.caption ? { caption: props.media.caption } : {}),
+          ...(props.media.filename ? { filename: props.media.filename } : {}),
+        };
+      } else if (props.media.type === "audio") {
+        payload.audio = {
+          id: props.media.mediaId,
+          ...(props.media.caption ? { caption: props.media.caption } : {}),
+          ...(props.media.filename ? { filename: props.media.filename } : {}),
+        };
+      }
+    }
+    return await this.axiosInstance
+      .post<WhatsAppTextMessageResponse>(`/messages`, payload)
+      .then((response) => response.data);
   }
 }

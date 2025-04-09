@@ -4,7 +4,6 @@ import { AxiosError } from "axios";
 import { config, Template } from "../config/config";
 import { isWhatsAppApiError } from "../utils/whatsapp_errors";
 
-import { PositionalVariable } from "../types/whatsapp";
 
 class WhatsappController {
   whatsappApi = new WhatsappApiSDK({
@@ -20,6 +19,7 @@ class WhatsappController {
     this.createTemplate = this.createTemplate.bind(this);
     this.getAllTemplates = this.getAllTemplates.bind(this);
     this.createFlow = this.createFlow.bind(this);
+    this.uploadMedia = this.uploadMedia.bind(this);
   }
 
   async sendMessageWithTemplate(req: FastifyRequest, res: FastifyReply) {
@@ -55,7 +55,7 @@ class WhatsappController {
         "Hello World",
         "917983613144"
       );
-      return res.send(response.data.contacts);
+      return res.send(response.contacts);
     } catch (error: unknown) {
       if (isWhatsAppApiError(error)) {
         console.log(error.response?.data.error);
@@ -136,6 +136,17 @@ class WhatsappController {
       //   screens: [],
       // })
     } catch (error) {}
+  }
+
+  async uploadMedia(req: FastifyRequest, res: FastifyReply) {
+    try {
+      const data = await req.file();
+      const response = await this.whatsappApi.uploadMedia(data!);
+      return res.send(response.id);
+    } catch (error: unknown) {
+      console.log(error);
+      return res.send({ error: (error as Error).message });
+    }
   }
 }
 

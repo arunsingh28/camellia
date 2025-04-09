@@ -144,3 +144,16 @@ export interface WhatsAppApiErrorResponse {
     fbtrace_id: string;
   };
 }
+
+type MediaType = "image" | "audio" | "document";
+
+export interface SendMediaMessageParams {
+  to: string;
+  text?: string;
+  media?: {
+    type: MediaType;
+    mediaId: string;
+    caption?: string; // for image & document
+    filename?: string; // for document
+  };
+}

@@ -7,6 +7,7 @@ class WhatsappRouter{
         fastify.post('/send-text-message', WhatsappController.sendTextMessage)
         fastify.post('/create-template', WhatsappController.createTemplate)
         fastify.get('/get-all-templates', WhatsappController.getAllTemplates)
+        fastify.post('/upload', WhatsappController.uploadMedia)
     }
 }
 
