@@ -17,7 +17,7 @@ interface WhatsappApiOptions {
   apiUrl: string; // e.g. https://graph.facebook.com/
   apiVersion: string; // e.g. v19.0
   businessAccountId: string;
-  businessNumberId: string;
+  whatsappNumberId: string;
   accessToken: string;
 }
 
@@ -27,11 +27,12 @@ export class WhatsappApiSDK {
 
   constructor(options: WhatsappApiOptions) {
     this.axiosInstance = axios.create({
-      baseURL: `${options.apiUrl}${options.apiVersion}/${options.businessNumberId}`,
+      baseURL: `${options.apiUrl}${options.apiVersion}/${options.whatsappNumberId}`,
       headers: {
         Authorization: `Bearer ${options.accessToken}`,
       },
     });
+    
     this.axiosTemplateInstance = axios.create({
       baseURL: `${options.apiUrl}${options.apiVersion}/${options.businessAccountId}`,
       headers: {
@@ -39,6 +40,8 @@ export class WhatsappApiSDK {
         "Content-Type": "application/json",
       },
     });
+
+  
 
     this.sendTemplateMessage = this.sendTemplateMessage.bind(this);
     this.sendTextMessage = this.sendTextMessage.bind(this);
@@ -49,6 +52,13 @@ export class WhatsappApiSDK {
     this.markMessageRead = this.markMessageRead.bind(this);
     this.uploadMedia = this.uploadMedia.bind(this);
     this.sendMediaMessage = this.sendMediaMessage.bind(this);
+    this.enableTwoStepVerification = this.enableTwoStepVerification.bind(this);
+  }
+
+  async enableTwoStepVerification(pin:string){
+   return await this.axiosInstance.post<{success:boolean}>('',{
+      pin,
+    }).then((response) => response.data)
   }
 
   async sendTemplateMessage(

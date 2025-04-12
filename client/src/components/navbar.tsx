@@ -1,8 +1,8 @@
 import { menuOptions, IMenuOptions } from '@/utils/menu';
 import { Link, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { Input } from 'antd';
-import { SearchIcon } from 'lucide-react';
+// import { Input } from 'antd';
+// import { SearchIcon } from 'lucide-react';
 import { cn } from '@/utils/util';
 
 import useDebounce from '@/hooks/useDebounce';
@@ -12,9 +12,9 @@ const Navbar = () => {
     const [search, setSearch] = useState('');
     const debouncedSearch = useDebounce(search, 300);
 
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-    };
+    // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     setSearch(e.target.value);
+    // };
 
     const [menu, setMenu] = useState<IMenuOptions>(menuOptions);
 
@@ -44,7 +44,7 @@ const Navbar = () => {
         <React.Fragment>
             <div className="py-3 w-[250px] max-w-[220px] font-roboto flex flex-col justify-between bg-gradient-to-b from-blue-100/20 to-primary/10">
                 <div>
-                    <Input
+                    {/* <Input
                         type="text"
                         size="small"
                         placeholder="Search"
@@ -54,7 +54,7 @@ const Navbar = () => {
                         className="mx-2 w-[calc(100%-1rem)] rounded-md px-2 py-1 border border-gray-300 mb-4 text-sm focus:!border-primary focus:!ring-primary focus:!ring-1 active:!border-primary active:!ring-primary focus:!outline-none"
                         value={search}
                         onChange={handleSearch}
-                    />
+                    /> */}
                     {menuSections.map((section, index) => (
                         <MenuSection
                             key={index}
@@ -109,9 +109,9 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
 }) => {
     if (items.length === 0) return null;
     return (
-        <div className="pr-2">
+        <div className="">
             {title && (
-                <p className="text-[12px] font-roboto text-primary mb-3 ml-2 uppercase">
+                <p className="text-[12px] font-roboto text-primary my-3 ml-2 uppercase">
                     {title}
                 </p>
             )}
@@ -119,16 +119,16 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
                 <Link
                     to={item.path}
                     className={cn(
-                        'flex items-center gap-2 my-2 cursor-pointer px-2 py-1.5 hover:bg-gray-200 border-l-[3px] rounded-none group',
+                        'flex items-center gap-2 my-1 cursor-pointer px-3 py-[8px] hover:bg-gray-200 rounded-none group',
                         location.pathname === item.path 
-                            ? 'bg-gray-200 border-l-[3px] border-primary rounded-r-md transition-all duration-300'
-                            : 'border-l-transparent rounded-md transition-all duration-300 hover:!ml-2',
+                            ? 'bg-gray-200 border-r-[3px] border-primary'
+                            : 'border-l-transparent transition-all duration-300',
                     )}
                     onClick={handleResetSearch}
                     key={item.path}
                 >
                     <item.icon
-                        size={16}
+                        size={20}
                         className={cn(
                             isGeneral
                                 ? 'group-hover:text-red-700 group-hover:stroke-red-700'
@@ -142,7 +142,7 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
                     />
                     <p
                         className={cn(
-                            'text-sm',
+                            'text-[14px]',
                             isGeneral
                                 ? 'text-gray-700 group-hover:text-red-700'
                                 : 'text-gray-700',

@@ -18,7 +18,7 @@ interface IConfig {
   isDev: string;
   mode: string;
   whatsapp: {
-    SENDER_NUMBER_ID: number;
+    WHATSAPP_NUMBER_ID: number;
     SENDER_NUMBER: string;
     WHATSAPP_BUSINESS_ACCOUNT_ID: string;
     WHATSAPP_TOKEN: string;
@@ -26,6 +26,7 @@ interface IConfig {
     WHATSAPP_API_VERSION: string;
     ROOT_TOKEN: string;
     TESTING_WHATSAPP_BUSINESS_NUMBER_ID: number;
+    TESTING_WHATSAPP_NUMBER_ID: number;
   };
   server: {
     TOKEN: string;
@@ -47,7 +48,7 @@ export const config: IConfig = {
   isDev: mode === "development" ? "dev" : "prod",
   mode,
   whatsapp: {
-    SENDER_NUMBER_ID: Number(process.env.SENDER_NUMBER_ID),
+    WHATSAPP_NUMBER_ID: Number(process.env.WHATSAPP_NUMBER_ID),
     SENDER_NUMBER: process.env.SENDER_NUMBER || "",
     WHATSAPP_BUSINESS_ACCOUNT_ID:
       process.env.WHATSAPP_BUSINESS_ACCOUNT_ID || "",
@@ -57,6 +58,9 @@ export const config: IConfig = {
     ROOT_TOKEN: process.env.ROOT_TOKEN || "",
     TESTING_WHATSAPP_BUSINESS_NUMBER_ID: Number(
       process.env.TESTING_WHATSAPP_BUSINESS_NUMBER_ID
+    ),
+    TESTING_WHATSAPP_NUMBER_ID: Number(
+      process.env.TESTING_WHATSAPP_NUMBER_ID || process.env.WHATSAPP_NUMBER_ID
     ),
   },
   server: {

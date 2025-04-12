@@ -9,7 +9,7 @@ class WhatsappWebhook {
     accessToken: config.whatsapp.ROOT_TOKEN,
     apiUrl: config.whatsapp.WHATSAPP_API_URL,
     apiVersion: config.whatsapp.WHATSAPP_API_VERSION,
-    businessNumberId: config.whatsapp.SENDER_NUMBER_ID.toString(),
+    whatsappNumberId: config.whatsapp.WHATSAPP_NUMBER_ID.toString(),
     businessAccountId: config.whatsapp.WHATSAPP_BUSINESS_ACCOUNT_ID.toString(),
   });
 
@@ -48,7 +48,7 @@ class WhatsappWebhook {
       req.body?.entry?.[0]?.changes?.[0]?.value?.messages?.[0]?.id ?? "No id"
     );
     this.whatsappApi.sendTextMessage(
-      "Hi there ",
+      "Kya be lode kya kar raha hai",
       req.body?.entry?.[0]?.changes?.[0]?.value?.messages?.[0]?.from ??
         "No sender"
     );

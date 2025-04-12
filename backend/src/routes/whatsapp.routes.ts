@@ -8,6 +8,7 @@ class WhatsappRouter{
         fastify.post('/create-template', WhatsappController.createTemplate)
         fastify.get('/get-all-templates', WhatsappController.getAllTemplates)
         fastify.post('/upload', WhatsappController.uploadMedia)
+        fastify.post('/set-pin', WhatsappController.setup2FA)
     }
 }
 

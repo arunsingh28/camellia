@@ -10,16 +10,19 @@ class WhatsappController {
     accessToken: config.whatsapp.ROOT_TOKEN,
     apiUrl: config.whatsapp.WHATSAPP_API_URL,
     apiVersion: config.whatsapp.WHATSAPP_API_VERSION,
-    businessNumberId: config.whatsapp.SENDER_NUMBER_ID.toString(),
+    whatsappNumberId: config.whatsapp.WHATSAPP_NUMBER_ID.toString(),
     businessAccountId: config.whatsapp.WHATSAPP_BUSINESS_ACCOUNT_ID.toString(),
   });
+
   constructor() {
+    console.log(config.whatsapp)
     this.sendMessageWithTemplate = this.sendMessageWithTemplate.bind(this);
     this.sendTextMessage = this.sendTextMessage.bind(this);
     this.createTemplate = this.createTemplate.bind(this);
     this.getAllTemplates = this.getAllTemplates.bind(this);
     this.createFlow = this.createFlow.bind(this);
     this.uploadMedia = this.uploadMedia.bind(this);
+    this.setup2FA = this.setup2FA.bind(this);
   }
 
   async sendMessageWithTemplate(req: FastifyRequest, res: FastifyReply) {
@@ -146,6 +149,20 @@ class WhatsappController {
     } catch (error: unknown) {
       console.log(error);
       return res.send({ error: (error as Error).message });
+    }
+  }
+
+  async setup2FA(req: FastifyRequest, res: FastifyReply) {
+    try {
+      const body = req.body as { pin: string };
+      const pin = body.pin;
+      const response = await this.whatsappApi.enableTwoStepVerification(pin)
+      return res.send(response);
+    } catch (error: unknown) {
+      if (isWhatsAppApiError(error)) {
+        console.log(error.response?.data.error);
+        return res.send({ error: error.response?.data.error.message });
+      }
     }
   }
 }
