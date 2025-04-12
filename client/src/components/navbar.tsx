@@ -5,10 +5,12 @@ import React, { useEffect, useState } from 'react';
 // import { SearchIcon } from 'lucide-react';
 import { cn } from '@/utils/util';
 
+import { useSidebar } from '@/context/navToggler';
 import useDebounce from '@/hooks/useDebounce';
 
 const Navbar = () => {
     const location = useLocation();
+    const { isOpen } = useSidebar();
     const [search, setSearch] = useState('');
     const debouncedSearch = useDebounce(search, 300);
 
@@ -36,13 +38,20 @@ const Navbar = () => {
 
     const menuSections = [
         { title: 'MAIN', items: menu.main },
-        { title: 'FINANCING', items: menu.financing },
+        // { title: 'FINANCING', items: menu?.financing },
         { title: 'UTILS', items: menu.utils },
     ];
 
     return (
         <React.Fragment>
-            <div className="py-3 w-[250px] max-w-[220px] font-roboto flex flex-col justify-between bg-gradient-to-b from-blue-100/20 to-primary/10">
+            <div
+                className={cn(
+                    'py-2 font-roboto flex flex-col justify-between bg-gradient-to-b from-blue-100/20 to-primary/10 transition-all duration-300',
+                    isOpen
+                        ? 'w-[250px] max-w-[220px]'
+                        : 'w-[70px] max-w-[60px]',
+                )}
+            >
                 <div>
                     {/* <Input
                         type="text"
@@ -66,6 +75,7 @@ const Navbar = () => {
                             items={section.items}
                             handleResetSearch={handleResetSearch}
                             location={location}
+                            isOpen={isOpen}
                         />
                     ))}
 
@@ -83,6 +93,7 @@ const Navbar = () => {
                         handleResetSearch={handleResetSearch}
                         location={location}
                         isGeneral
+                        isOpen={isOpen}
                     />
                 </div>
             </div>
@@ -98,6 +109,7 @@ interface MenuSectionsProps {
     handleResetSearch: () => void;
     location: ReturnType<typeof useLocation>;
     isGeneral?: boolean;
+    isOpen: boolean;
 }
 
 const MenuSection: React.FC<MenuSectionsProps> = ({
@@ -106,29 +118,31 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
     handleResetSearch,
     location,
     isGeneral = false,
+    isOpen,
 }) => {
     if (items.length === 0) return null;
     return (
-        <div className="">
-            {title && (
+        <div>
+            {isOpen && title && (
                 <p className="text-[12px] font-roboto text-primary my-3 ml-2 uppercase">
                     {title}
                 </p>
             )}
-            {items.map((item) => (
+            {items?.map((item) => (
                 <Link
                     to={item.path}
                     className={cn(
                         'flex items-center gap-2 my-1 cursor-pointer px-3 py-[8px] hover:bg-gray-200 rounded-none group',
-                        location.pathname === item.path 
+                        location.pathname === item.path
                             ? 'bg-gray-200 border-r-[3px] border-primary'
                             : 'border-l-transparent transition-all duration-300',
+                        !isOpen ? 'px-[17px] py-[12px]' : ''
                     )}
                     onClick={handleResetSearch}
                     key={item.path}
                 >
                     <item.icon
-                        size={20}
+                        size={21}
                         className={cn(
                             isGeneral
                                 ? 'group-hover:text-red-700 group-hover:stroke-red-700'
@@ -140,16 +154,18 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
                                 : 'text-gray-700 stroke-gray-700',
                         )}
                     />
-                    <p
-                        className={cn(
-                            'text-[14px]',
-                            isGeneral
-                                ? 'text-gray-700 group-hover:text-red-700'
-                                : 'text-gray-700',
-                        )}
-                    >
-                        {item.name}
-                    </p>
+                    {isOpen && (
+                        <p
+                            className={cn(
+                                'text-[14px]',
+                                isGeneral
+                                    ? 'text-gray-700 group-hover:text-red-700'
+                                    : 'text-gray-700',
+                            )}
+                        >
+                            {item.name}
+                        </p>
+                    )}
                 </Link>
             ))}
         </div>

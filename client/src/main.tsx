@@ -6,10 +6,14 @@ import { Router } from '@/router';
 
 import '@/styles/index.css';
 
+import { SidebarProvider } from './context/navToggler';
+
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <BrowserRouter>
-            <Router />
+            <SidebarProvider>
+                <Router />
+            </SidebarProvider>
         </BrowserRouter>
     </StrictMode>,
 );

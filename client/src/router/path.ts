@@ -14,6 +14,9 @@ export const paths = {
     STAFF:{
       INDEX: '/staff',
     },
+    MESSAGE:{
+      INDEX: '/messages'
+    },
     TEMPLATES:{
       INDEX: '/templates',
       CREATE: '/templates/create',

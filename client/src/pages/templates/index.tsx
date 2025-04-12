@@ -1,6 +1,5 @@
 import { Typography, Button, Table } from 'antd';
 import {
-    MessageCircle,
     Sigma,
     DraftingCompass,
     Hourglass,
@@ -10,6 +9,7 @@ import {
     Bell,
     Key,
     Megaphone,
+    MessagesSquare,
 } from 'lucide-react';
 import {
     DialogTitle,
@@ -104,8 +104,8 @@ const Messages = () => {
                     level={3}
                     className="!text-gray-700 flex items-center gap-1"
                 >
-                    <MessageCircle size={24} />
-                    Messages
+                    <MessagesSquare size={24} />
+                    Templates
                 </Typography.Title>
                 <Button
                     type="primary"

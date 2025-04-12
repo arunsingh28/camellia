@@ -1,29 +1,62 @@
-import { APP_NAME, schoolName, schoolLogo } from "@/constants";
-import { Button,Drawer } from "antd";
-import {ChevronDownIcon, Settings} from "lucide-react"
-import { useState } from "react";
-import SettingComponent from "./settings";
+import { APP_NAME, schoolName, schoolLogo } from '@/constants';
+import { Button, Drawer } from 'antd';
+import {
+    ChevronDownIcon,
+    Settings,
+    PanelTopClose,
+    PanelTopOpen,
+} from 'lucide-react';
+import { useState } from 'react';
+import SettingComponent from './settings';
+
+import { useSidebar } from '@/context/navToggler';
 
 const topbar = () => {
     const [open, setOpen] = useState(false);
+    const { isOpen, toggleSidebar } = useSidebar();
     return (
         <div className="py-1 z-10 bg-gradient-to-r from-blue-100/20 to-purple-100">
             <div className="flex items-center justify-between px-3">
                 <div className="flex items-center gap-2">
-                <img src={schoolLogo} className="w-10 h-10"/>
-                <h1 className="text-md font-[600] font-roboto text-gray-700">
-                    {schoolName} <pre className="text-xs text-gray-500">By {APP_NAME}</pre>
-                </h1>
+                    <img src={schoolLogo} className="w-10 h-10" />
+                    <h1 className="text-md font-[600] font-roboto text-gray-700">
+                        {schoolName}{' '}
+                        <pre className="text-xs text-gray-500">
+                            By {APP_NAME}
+                        </pre>
+                    </h1>
+                    {!isOpen ? (
+                        <PanelTopClose
+                            size={25}
+                            className="rotate-90 ml-3 cursor-pointer hover:text-gray-800"
+                            onClick={toggleSidebar}
+                            strokeWidth={1.3}
+                        />
+                    ) : (
+                        <PanelTopOpen
+                            size={25}
+                            className="rotate-90 ml-3 cursor-pointer hover:text-gray-800"
+                            onClick={toggleSidebar}
+                            strokeWidth={1.3}
+                        />
+                    )}
                 </div>
-               <div className="flex items-center gap-5">
-                <Button type="dashed" className="border border-primary font-roboto hover:!text-primary hover:!border-primary hover:!bg-gray-200 !rounded-lg" icon={<Settings size={16}/>} onClick={() => setOpen(true)}>Settings</Button>
-               <Status/>
-               <div className="w-[1px] h-[30px] bg-primary"/>
-               <ProfileSettings />
-               </div>
+                <div className="flex items-center gap-5">
+                    <Button
+                        type="dashed"
+                        className="border border-primary font-roboto hover:!text-primary hover:!border-primary hover:!bg-gray-200 !rounded-lg"
+                        icon={<Settings size={16} />}
+                        onClick={() => setOpen(true)}
+                    >
+                        Settings
+                    </Button>
+                    <Status />
+                    <div className="w-[1px] h-[30px] bg-primary" />
+                    <ProfileSettings />
+                </div>
             </div>
             <Drawer open={open} onClose={() => setOpen(false)} size="large">
-                <SettingComponent/>
+                <SettingComponent />
             </Drawer>
         </div>
     );
@@ -45,10 +78,10 @@ const ProfileSettings = () => {
                     Arun Pratap Singh
                 </p>
                 <p className="text-xs font-roboto text-gray-500">
-                   +91 7983613144
+                    +91 7983613144
                 </p>
             </div>
-            <ChevronDownIcon size={16} className="text-gray-500"/>
+            <ChevronDownIcon size={16} className="text-gray-500" />
         </div>
     );
 };
@@ -56,7 +89,7 @@ const ProfileSettings = () => {
 const Status = () => {
     return (
         <div className="flex items-center gap-2 border py-[5px] px-4 rounded-lg bg-green-100 border-green-500">
-            <div className="w-2 h-2 bg-green-500 rounded-full"/>
+            <div className="w-2 h-2 bg-green-500 rounded-full" />
             <p className="text-sm font-[500] font-roboto text-green-700">
                 Active
             </p>

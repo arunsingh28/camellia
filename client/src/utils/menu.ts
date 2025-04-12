@@ -4,6 +4,8 @@ import { HomeIcon, LogOutIcon,User, GraduationCap,
     //  Workflow,
       Wallet2, LucideProps, Database, 
       Workflow,
+      MessageSquare,
+      MessagesSquare,
       History} from "lucide-react";
 import { paths } from "@/router/path";
 
@@ -20,6 +22,11 @@ export interface IMenuOptions{
 export const menuOptions: IMenuOptions = {
     main:[
         {
+            name: "Message",
+            icon: MessageSquare,
+            path: paths.APP.MESSAGE.INDEX
+        },
+        {
             name: "Dashboard",
             icon: HomeIcon,
             path: paths.APP.DASHBOARD,
@@ -35,13 +42,13 @@ export const menuOptions: IMenuOptions = {
             path: paths.APP.TEACHERS.INDEX,
         },
     ],
-    financing: [
-        {
-            name: "Billing & Usage",
-            icon: Wallet2,
-            path: paths.APP.BILLING_USAGE,
-        },
-    ],
+    // financing: [
+    //     {
+    //         name: "Billing & Usage",
+    //         icon: Wallet2,
+    //         path: paths.APP.BILLING_USAGE,
+    //     },
+    // ],
     utils:[
         {
             name: "Master Records",
@@ -50,7 +57,7 @@ export const menuOptions: IMenuOptions = {
         },
         {
             name: "Templates",
-            icon: MessageCircle,
+            icon: MessagesSquare,
             path: paths.APP.TEMPLATES.INDEX,
         },
         {
