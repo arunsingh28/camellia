@@ -6,10 +6,18 @@ import {
     PanelTopClose,
     PanelTopOpen,
 } from 'lucide-react';
+import {
+    Popover,
+    PopoverBackdrop,
+    PopoverButton,
+    PopoverPanel,
+} from '@headlessui/react';
 import { useState } from 'react';
 import SettingComponent from './settings';
 
 import { useSidebar } from '@/context/navToggler';
+import { ProfileMenu } from '@/utils/menu';
+import { cn } from '@/utils/util';
 
 const topbar = () => {
     const [open, setOpen] = useState(false);
@@ -66,23 +74,28 @@ export default topbar;
 
 const ProfileSettings = () => {
     return (
-        <div className="flex items-center gap-2 hover:bg-primary/10 px-2 py-1 rounded-lg cursor-pointer">
-            <img
-                src={
-                    'https://images.pexels.com/photos/30148955/pexels-photo-30148955/free-photo-of-thoughtful-woman-posing-by-window-outdoors.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load'
-                }
-                className="w-10 h-10 rounded-full object-cover object-center"
-            />
-            <div className="">
-                <p className="text-sm font-[500] font-roboto text-gray-700">
-                    Arun Pratap Singh
-                </p>
-                <p className="text-xs font-roboto text-gray-500">
-                    +91 7983613144
-                </p>
-            </div>
-            <ChevronDownIcon size={16} className="text-gray-500" />
-        </div>
+        <Popover className="group">
+            <PopoverButton>
+                <div className="flex items-center gap-3 hover:bg-primary/10 px-2 py-1 rounded-lg cursor-pointer">
+                    <img
+                        src={
+                            'https://images.pexels.com/photos/30148955/pexels-photo-30148955/free-photo-of-thoughtful-woman-posing-by-window-outdoors.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load'
+                        }
+                        className="w-10 h-10 rounded-full object-cover object-center"
+                    />
+                    <div className="flex flex-col items-start">
+                        <p className="text-sm font-[500] font-roboto text-gray-700">
+                            Arun Pratap Singh
+                        </p>
+                        <p className="text-xs font-roboto text-gray-500">
+                            +91 7983613144
+                        </p>
+                    </div>
+                    <ChevronDownIcon className="size-5 group-data-[open]:rotate-180" />
+                </div>
+                <ProfileSettingsPopover />
+            </PopoverButton>
+        </Popover>
     );
 };
 
@@ -96,3 +109,37 @@ const Status = () => {
         </div>
     );
 };
+
+function ProfileSettingsPopover() {
+    return (
+        <PopoverPanel
+            transition
+            anchor="bottom start"
+            className="flex flex-col origin-top bg-white w-[210px] px-[10px] py-3 mt-2 rounded-md shadow-md transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+        >
+            {ProfileMenu.map((item) => {
+                return (
+                    <div
+                        key={item.title}
+                        className={cn(
+                            'flex p-2 rounded-md cursor-pointer hover:bg-primary/10 items-center gap-2',
+                            item.title.toLowerCase() === 'logout' &&
+                                'hover:bg-red-100',
+                        )}
+                    >
+                        <item.icon size="18" />
+                        <p
+                            className={cn(
+                                'text-sm text-gray-700',
+                                item.title.toLowerCase() === 'logout' &&
+                                    'text-red-500',
+                            )}
+                        >
+                            {item.title}
+                        </p>
+                    </div>
+                );
+            })}
+        </PopoverPanel>
+    );
+}

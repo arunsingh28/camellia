@@ -1,6 +1,7 @@
 import { menuOptions, IMenuOptions } from '@/utils/menu';
 import { Link, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { Tooltip } from 'antd';
 // import { Input } from 'antd';
 // import { SearchIcon } from 'lucide-react';
 import { cn } from '@/utils/util';
@@ -38,7 +39,6 @@ const Navbar = () => {
 
     const menuSections = [
         { title: 'MAIN', items: menu.main },
-        // { title: 'FINANCING', items: menu?.financing },
         { title: 'UTILS', items: menu.utils },
     ];
 
@@ -85,17 +85,7 @@ const Navbar = () => {
                         </p>
                     )}
                 </div>
-                <div>
-                    <div className="w-full h-[1px] bg-gray-200 my-3" />
-                    <MenuSection
-                        title="GENERAL"
-                        items={menuOptions.general}
-                        handleResetSearch={handleResetSearch}
-                        location={location}
-                        isGeneral
-                        isOpen={isOpen}
-                    />
-                </div>
+                
             </div>
         </React.Fragment>
     );
@@ -128,46 +118,59 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
                     {title}
                 </p>
             )}
-            {items?.map((item) => (
-                <Link
-                    to={item.path}
-                    className={cn(
-                        'flex items-center gap-2 my-1 cursor-pointer px-3 py-[8px] hover:bg-gray-200 rounded-none group',
-                        location.pathname === item.path
-                            ? 'bg-gray-200 border-r-[3px] border-primary'
-                            : 'border-l-transparent transition-all duration-300',
-                        !isOpen ? 'px-[17px] py-[12px]' : ''
-                    )}
-                    onClick={handleResetSearch}
-                    key={item.path}
-                >
-                    <item.icon
-                        size={21}
+            {items?.map((item) => {
+                const linkContent = (
+                    <Link
+                        to={item.path}
                         className={cn(
-                            isGeneral
-                                ? 'group-hover:text-red-700 group-hover:stroke-red-700'
-                                : 'group-hover:text-primary group-hover:stroke-primary',
+                            'flex items-center gap-2 my-1 cursor-pointer px-3 py-[8px] hover:bg-gray-200 rounded-none group',
                             location.pathname === item.path
-                                ? isGeneral
-                                    ? 'text-red-700 stroke-red-700'
-                                    : 'text-primary stroke-primary'
-                                : 'text-gray-700 stroke-gray-700',
+                                ? 'bg-gray-200 border-r-[3px] border-primary'
+                                : 'border-l-transparent transition-all duration-300',
+                            !isOpen ? 'px-[17px] py-[12px]' : '',
                         )}
-                    />
-                    {isOpen && (
-                        <p
+                        onClick={handleResetSearch}
+                        key={item.path}
+                    >
+                        <item.icon
+                            size={21}
                             className={cn(
-                                'text-[14px]',
                                 isGeneral
-                                    ? 'text-gray-700 group-hover:text-red-700'
-                                    : 'text-gray-700',
+                                    ? 'group-hover:text-red-700 group-hover:stroke-red-700'
+                                    : 'group-hover:text-primary group-hover:stroke-primary',
+                                location.pathname === item.path
+                                    ? isGeneral
+                                        ? 'text-red-700 stroke-red-700'
+                                        : 'text-primary stroke-primary'
+                                    : 'text-gray-700 stroke-gray-700',
                             )}
-                        >
-                            {item.name}
-                        </p>
-                    )}
-                </Link>
-            ))}
+                        />
+                        {isOpen && (
+                            <p
+                                className={cn(
+                                    'text-[14px]',
+                                    isGeneral
+                                        ? 'text-gray-700 group-hover:text-red-700'
+                                        : 'text-gray-700',
+                                )}
+                            >
+                                {item.name}
+                            </p>
+                        )}
+                    </Link>
+                );
+                return !isOpen ? (
+                    <Tooltip
+                        placement="left"
+                        color="white"
+                        title={<p className="text-gray-700">{item?.name}</p>}
+                    >
+                        {linkContent}
+                    </Tooltip>
+                ) : (
+                    linkContent
+                );
+            })}
         </div>
     );
 };
