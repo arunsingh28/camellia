@@ -19,7 +19,7 @@ const marketing = () => {
                 const uniqueVars = Array.from(new Set(cleanedMatches));
                 if (cleanedMatches.length !== uniqueVars.length) {
                     setVariableError(true);
-                } else{
+                } else {
                     setVariableError(false);
                 }
                 setVariables(uniqueVars);
@@ -160,36 +160,45 @@ const marketing = () => {
                                 size="large"
                                 onChange={handleBodyChanges}
                             />
-                            {
-                                variableError && <div className="text-sm text-gray-600 mt-4">
-                                <Alert
-                                    message={
-                                        'This template contains too many variable parameters relative to the message length. You need to decrease the number of variable parameters or increase the message length.'
-                                    }
-                                    type="error"
-                                    key="eror"
-                                />
-                            </div>
-                            }
-                            {
-                               variables.length > 0 && (
+                            {variableError && (
+                                <div className="text-sm text-gray-600 mt-4">
+                                    <Alert
+                                        message={
+                                            'This template contains too many variable parameters relative to the message length. You need to decrease the number of variable parameters or increase the message length.'
+                                        }
+                                        type="error"
+                                        key="eror"
+                                    />
+                                </div>
+                            )}
+                            {variables.length > 0 && (
                                 <div className="flex flex-col gap-2 w-full my-3">
                                     <label className="text-sm text-gray-700">
-                                    Samples for body content
+                                        Samples for body content
                                     </label>
-                                    <p className='text-sm text-gray-500'>To help us review your message template, please add an example for each variable in your body text. Do not use real customer information. Cloud API hosted by Meta reviews templates and variable parameters to protect the security and integrity of our services.</p>
+                                    <p className="text-sm text-gray-500">
+                                        To help us review your message template,
+                                        please add an example for each variable
+                                        in your body text. Do not use real
+                                        customer information. Cloud API hosted
+                                        by Meta reviews templates and variable
+                                        parameters to protect the security and
+                                        integrity of our services.
+                                    </p>
 
-                                    {
-                                      variables.map(i => (
-                                        <div key={i.toLocaleString()} className='flex items-end mt-2'>
-                                            <span className='w-[200px] text-gray-600 text-sm'>{`{{${i}}}`}</span>
-                                            <Input placeholder={`Enter sample value for ${i}`}/>
+                                    {variables.map((i) => (
+                                        <div
+                                            key={i.toLocaleString()}
+                                            className="flex items-end mt-2"
+                                        >
+                                            <span className="w-[200px] text-gray-600 text-sm">{`{{${i}}}`}</span>
+                                            <Input
+                                                placeholder={`Enter sample value for ${i}`}
+                                            />
                                         </div>
-                                      ))  
-                                    }
+                                    ))}
                                 </div>
-                               ) 
-                            }
+                            )}
                         </div>
                         <div className="flex flex-col gap-2 w-full">
                             <label className="text-sm text-gray-700">
