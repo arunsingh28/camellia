@@ -131,7 +131,7 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
                                 isGeneral
                                     ? 'group-hover:text-red-700 group-hover:stroke-red-700'
                                     : 'group-hover:text-primary group-hover:stroke-primary',
-                                location.pathname === item.path
+                                    isActive
                                     ? isGeneral
                                         ? 'text-red-700 stroke-red-700'
                                         : 'text-primary stroke-primary'
