@@ -9,8 +9,8 @@ const marketing = () => {
     return (
         <div className="px-5">
             <div className="flex flex-col gap-4">
-                <div className="w-full bg-white py-5 px-4 rounded-lg border-2 border-[#E0E0E0]">
-                    <h2 className="text-base font-semibold text-gray-800">
+                <div className="w-full bg-white py-5 px-4 rounded-lg border-1 border-[#E0E0E0]">
+                    <h2 className="text-base font-semibold text-gray-700">
                         Template name and language
                     </h2>
                     <div className="flex py-2 w-full justify-between items-center gap-4">
@@ -26,7 +26,7 @@ const marketing = () => {
                             size="large"
                         />
                         <div className="flex flex-col gap-2 w-full">
-                            <label className="text-sm text-gray-800">
+                            <label className="text-sm text-gray-700">
                                 Select language
                             </label>
                             <Select
@@ -45,8 +45,8 @@ const marketing = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full bg-white py-5 px-4 rounded-lg border-2 border-[#E0E0E0]">
-                    <h2 className="text-base font-semibold text-gray-800">
+                <div className="w-full bg-white py-5 px-4 rounded-lg border-spacing-1 border-[#E0E0E0]">
+                    <h2 className="text-base font-semibold text-gray-700">
                         Template content
                     </h2>
                     <p className="text-sm text-gray-500 mt-1">
@@ -55,7 +55,7 @@ const marketing = () => {
                     </p>
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-col gap-2 w-full mt-2">
-                            <label className="text-sm text-gray-800">
+                            <label className="text-sm text-gray-700">
                                 Variable{' '}
                                 <Tooltip
                                     color="white"
@@ -96,7 +96,7 @@ const marketing = () => {
                             </Select>
                         </div>
                         <div className="flex flex-col gap-2 w-full">
-                            <label className="text-sm text-gray-800">
+                            <label className="text-sm text-gray-700">
                                 Header
                             </label>
                             <Select
@@ -112,7 +112,7 @@ const marketing = () => {
                             </Select>
                         </div>
                         <div className="flex flex-col gap-2 w-full">
-                            <label className="text-sm text-gray-800">
+                            <label className="text-sm text-gray-700">
                                 Body
                             </label>
                             <Input.TextArea
@@ -127,7 +127,7 @@ const marketing = () => {
                             />
                         </div>
                         <div className="flex flex-col gap-2 w-full">
-                            <label className="text-sm text-gray-800">
+                            <label className="text-sm text-gray-700">
                                 Footer
                             </label>
                             <Input
@@ -143,8 +143,8 @@ const marketing = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full bg-white py-5 px-4 rounded-lg border-2 border-[#E0E0E0]">
-                    <h2 className="text-base font-semibold text-gray-800">
+                <div className="w-full bg-white py-5 px-4 rounded-lg border-1 border-[#E0E0E0]">
+                    <h2 className="text-base font-semibold text-gray-700">
                         Buttons{' '}
                         <span className="text-sm text-gray-600 font-normal">
                             Optional
