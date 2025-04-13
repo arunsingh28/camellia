@@ -6,25 +6,24 @@ import {
     CheckCheck,
     TriangleAlert,
     MessageCirclePlus,
-    Bell,
-    Key,
-    Megaphone,
+    // Bell,
+    // Key,
+    // Megaphone,
     MessagesSquare,
 } from 'lucide-react';
 import {
-    DialogTitle,
+    // DialogTitle,
     Tab,
     TabGroup,
     TabList,
     TabPanel,
     TabPanels,
 } from '@headlessui/react';
-import Modal from '@/components/modal';
+// import Modal from '@/components/modal';
 import { useNavigate } from 'react-router-dom';
 
 import { tableItems } from './tabs/allTable';
 
-import useModal from '@/hooks/useModal';
 import { paths } from '@/router/path';
 
 const items = [
@@ -90,7 +89,6 @@ const items = [
 
 const Messages = () => {
     const navigate = useNavigate();
-    const { close, isOpen, open } = useModal();
 
     const redirecter = (type: string) => () => {
         close();
@@ -110,7 +108,7 @@ const Messages = () => {
                 <Button
                     type="primary"
                     icon={<MessageCirclePlus size={20} />}
-                    onClick={open}
+                    onClick={redirecter('marketing')}
                 >
                     New Template
                 </Button>
@@ -141,7 +139,7 @@ const Messages = () => {
                     ))}
                 </TabPanels>
             </TabGroup>
-            <Modal
+            {/* <Modal
                 isOpen={isOpen}
                 onClose={close}
                 key={'new_template_modal'}
@@ -204,7 +202,7 @@ const Messages = () => {
                         </Button>
                     </div>
                 </div>
-            </Modal>
+            </Modal> */}
         </div>
     );
 };

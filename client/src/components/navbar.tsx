@@ -108,12 +108,16 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
                 </p>
             )}
             {items?.map((item) => {
+                 const isActive =
+                 item.path === '/'
+                     ? location.pathname === item.path
+                     : location.pathname === item.path || location.pathname.startsWith(item.path);
                 const linkContent = (
                     <Link
                         to={item.path}
                         className={cn(
                             'flex items-center gap-2 my-1 cursor-pointer px-3 py-[8px] hover:bg-gray-200 rounded-none group',
-                            location.pathname === item.path
+                            isActive
                                 ? 'bg-gray-200 border-r-[3px] border-primary'
                                 : 'border-l-transparent transition-all duration-300',
                             !isOpen ? 'px-[17px] py-[12px]' : '',
