@@ -53,17 +53,6 @@ const Navbar = () => {
                 )}
             >
                 <div>
-                    {/* <Input
-                        type="text"
-                        size="small"
-                        placeholder="Search"
-                        prefix={
-                            <SearchIcon size={16} className="text-gray-500" />
-                        }
-                        className="mx-2 w-[calc(100%-1rem)] rounded-md px-2 py-1 border border-gray-300 mb-4 text-sm focus:!border-primary focus:!ring-primary focus:!ring-1 active:!border-primary active:!ring-primary focus:!outline-none"
-                        value={search}
-                        onChange={handleSearch}
-                    /> */}
                     {menuSections.map((section, index) => (
                         <MenuSection
                             key={index}
@@ -130,7 +119,7 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
                             !isOpen ? 'px-[17px] py-[12px]' : '',
                         )}
                         onClick={handleResetSearch}
-                        key={item.path}
+                        key={item.name}
                     >
                         <item.icon
                             size={21}
@@ -154,7 +143,7 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
                                         : 'text-gray-700',
                                 )}
                             >
-                                {item.name}
+                                {item?.name}
                             </p>
                         )}
                     </Link>
@@ -163,6 +152,7 @@ const MenuSection: React.FC<MenuSectionsProps> = ({
                     <Tooltip
                         placement="left"
                         color="white"
+                        key={item.name}
                         title={<p className="text-gray-700">{item?.name}</p>}
                     >
                         {linkContent}

@@ -8,7 +8,6 @@ import {
 } from 'lucide-react';
 import {
     Popover,
-    PopoverBackdrop,
     PopoverButton,
     PopoverPanel,
 } from '@headlessui/react';
@@ -122,17 +121,17 @@ function ProfileSettingsPopover() {
                     <div
                         key={item.title}
                         className={cn(
-                            'flex p-2 rounded-md cursor-pointer hover:bg-primary/10 items-center gap-2',
+                            'flex p-2 rounded-md cursor-pointer hover:bg-gray-100 items-center gap-2',
                             item.title.toLowerCase() === 'logout' &&
                                 'hover:bg-red-100',
                         )}
                     >
-                        <item.icon size="18" />
+                        <item.icon size="18" className={cn(item.title.toLowerCase() === 'logout' && 'text-red-600')}/>
                         <p
                             className={cn(
                                 'text-sm text-gray-700',
                                 item.title.toLowerCase() === 'logout' &&
-                                    'text-red-500',
+                                    'text-red-600',
                             )}
                         >
                             {item.title}
