@@ -8,7 +8,7 @@ const AppLayout = () => {
         <React.Fragment>
             <div className="font-roboto">
                 <Topbar />
-                <div className="flex bg-background-light h-[calc(100vh-57px)]">
+                <div className="flex bg-background-light h-[calc(100vh-60px)]">
                     <Navbar />
                     <div className="overflow-auto w-full bg-background-light2 rounded-t-sm p-2">
                         <Outlet />

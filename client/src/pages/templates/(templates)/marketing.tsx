@@ -14,7 +14,7 @@ const marketing = () => {
                         <LabeldInput
                             label="Name your template"
                             placeholder="Enter template name"
-                            className="w-[600px] h-[40px] rounded-lg focus:border-primary hover:border-primary focus:outline-none"
+                            className="w-[600px] h-[35px] rounded-lg focus:border-primary hover:border-primary focus:outline-none"
                             allowClear
                             showCount
                             count={{
@@ -27,16 +27,16 @@ const marketing = () => {
                                 Select language
                             </label>
                             <Select
-                                placeholder="Select template type"
+                                placeholder="Select language"
                                 onChange={(value) => console.log(value)}
                                 allowClear
-                                className="h-[40px] w-full rounded-lg focus:border-primary hover:border-primary focus:outline-none"
+                                className="h-[35px] w-full rounded-lg focus:border-primary hover:border-primary focus:outline-none"
                             >
-                                <Select.Option value="1">
-                                    Template 1
+                                <Select.Option value="en">
+                                    English 
                                 </Select.Option>
-                                <Select.Option value="2">
-                                    Template 2
+                                <Select.Option value="en_us">
+                                    English US
                                 </Select.Option>
                             </Select>
                         </div>
@@ -80,7 +80,7 @@ const marketing = () => {
                                 onChange={(value) => console.log(value)}
                                 allowClear
                                 value={'NUMBER'}
-                                className="h-[40px] w-full rounded-lg focus:border-primary hover:border-primary focus:outline-none"
+                                className="h-[35px] w-full rounded-lg focus:border-primary hover:border-primary focus:outline-none"
                             >
                                 <Select.Option value="NUMBER">
                                     Number
@@ -98,7 +98,7 @@ const marketing = () => {
                                 placeholder="Select template type"
                                 onChange={(value) => console.log(value)}
                                 allowClear
-                                className="h-[40px] w-full rounded-lg focus:border-primary hover:border-primary focus:outline-none"
+                                className="h-[35px] w-full rounded-lg focus:border-primary hover:border-primary focus:outline-none"
                             >
                                 <Select.Option value="1">None</Select.Option>
                                 <Select.Option value="2">
@@ -127,7 +127,7 @@ const marketing = () => {
                             </label>
                             <Input
                                 placeholder="Enter text"
-                                className="w-full rounded-lg focus:border-primary hover:border-primary focus:outline-none"
+                                className="w-full h-[35px] rounded-lg focus:border-primary hover:border-primary focus:outline-none"
                                 allowClear
                                 showCount
                                 count={{
