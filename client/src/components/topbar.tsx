@@ -1,8 +1,7 @@
 import { APP_NAME, schoolName, schoolLogo } from '@/constants';
-import { Button, Drawer } from 'antd';
+import { Drawer } from 'antd';
 import {
     ChevronDownIcon,
-    Settings,
     PanelTopClose,
     PanelTopOpen,
 } from 'lucide-react';
@@ -49,14 +48,7 @@ const topbar = () => {
                     )}
                 </div>
                 <div className="flex items-center gap-5">
-                    <Button
-                        type="dashed"
-                        className="border border-primary font-roboto hover:!text-primary hover:!border-primary hover:!bg-gray-200 !rounded-lg"
-                        icon={<Settings size={16} />}
-                        onClick={() => setOpen(true)}
-                    >
-                        Settings
-                    </Button>
+                   
                     <Status />
                     <div className="w-[1px] h-[30px] bg-primary" />
                     <ProfileSettings />

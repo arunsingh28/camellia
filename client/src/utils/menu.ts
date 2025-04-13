@@ -3,7 +3,8 @@ import { HomeIcon, LogOutIcon,User, GraduationCap,
       Workflow,
       MessageSquare,
       MessagesSquare,IndianRupee,UserPen,
-      History} from "lucide-react";
+      History,
+      Settings} from "lucide-react";
 import { paths } from "@/router/path";
 
 
@@ -72,6 +73,11 @@ export const ProfileMenu = [
     {
         title: 'Profile',
         icon: UserPen,
+        path: ''
+    },
+    {
+        title:'Settings',
+        icon:Settings,
         path: ''
     },
     {
