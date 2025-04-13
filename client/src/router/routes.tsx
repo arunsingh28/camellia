@@ -5,6 +5,7 @@ import { paths } from './path';
 import Fallback from '@/components/fallback';
 
 const TemplateLayout = lazy(() => import('@/pages/templates/layout'));
+// import TemplateLayout from '@/pages/templates/layout'
 const AppLayout = lazy(() => import('@/layouts/app.layout'));
 
 const Home = lazy(() => import('@/pages/dashboard'));
@@ -13,8 +14,10 @@ const MasterData = lazy(() => import('@/pages/master-data'));
 const Students = lazy(() => import('@/pages/students'));
 const Teachers = lazy(() => import('@/pages/teachers'));
 const Templates = lazy(() => import('@/pages/templates'));
+// import Templates from '@/pages/templates'
 
 const DynamicTemplate = lazy(() => import('@/pages/templates/(templates)/index'));
+// import DynamicTemplate from '@/pages/templates/(templates)/index'
 
 export const routes: RouteObject[] = [
     {

@@ -1,13 +1,16 @@
 import LabeldInput from '@/components/ui/Input';
-import { Select, Tooltip, Input } from 'antd';
-import { InfoIcon } from 'lucide-react';
+import useModal from '@/hooks/useModal';
+import { Select, Tooltip, Input, Button, Popover } from 'antd';
+import { InfoIcon, Plus } from 'lucide-react';
 
 const marketing = () => {
+    const { isOpen, toggle } = useModal();
+
     return (
         <div className="px-5">
             <div className="flex flex-col gap-4">
                 <div className="w-full bg-white py-5 px-4 rounded-lg border-2 border-[#E0E0E0]">
-                    <h2 className="text-lg font-semibold">
+                    <h2 className="text-base font-semibold text-gray-800">
                         Template name and language
                     </h2>
                     <div className="flex py-2 w-full justify-between items-center gap-4">
@@ -33,7 +36,7 @@ const marketing = () => {
                                 className="h-[35px] w-full rounded-lg focus:border-primary hover:border-primary focus:outline-none"
                             >
                                 <Select.Option value="en">
-                                    English 
+                                    English
                                 </Select.Option>
                                 <Select.Option value="en_us">
                                     English US
@@ -43,8 +46,10 @@ const marketing = () => {
                     </div>
                 </div>
                 <div className="w-full bg-white py-5 px-4 rounded-lg border-2 border-[#E0E0E0]">
-                    <h2 className="text-lg font-semibold">Template content</h2>
-                    <p className="text-sm text-gray-500">
+                    <h2 className="text-base font-semibold text-gray-800">
+                        Template content
+                    </h2>
+                    <p className="text-sm text-gray-500 mt-1">
                         Fill in the header, body and footer sections of your
                         template.
                     </p>
@@ -59,12 +64,12 @@ const marketing = () => {
                                             className="text-sm text-gray-800"
                                             dangerouslySetInnerHTML={{
                                                 __html: `Variables are placeholders that are used to dynamically insert specific information or data into your template. You can insert either a name or number as a variable. <br/>
-                            Examples: <br />
-                            <ul>
-                                <li> Name: {{order_id}} </li>
-                                <li>Number: {{1}}</li>
-                            </ul>
-                            `,
+                                                            Examples: <br />
+                                                            <ul>
+                                                                <li> Name: {{order_id}} </li>
+                                                                <li>Number: {{1}}</li>
+                                                            </ul>
+                                                `,
                                             }}
                                         />
                                     }
@@ -139,13 +144,38 @@ const marketing = () => {
                     </div>
                 </div>
                 <div className="w-full bg-white py-5 px-4 rounded-lg border-2 border-[#E0E0E0]">
-                    <h2 className="text-lg font-semibold">Buttons</h2>
-                    <p className="text-sm text-gray-500">
+                    <h2 className="text-base font-semibold text-gray-800">
+                        Buttons{' '}
+                        <span className="text-sm text-gray-600 font-normal">
+                            Optional
+                        </span>
+                    </h2>
+                    <p className="text-sm text-gray-500 mt-1">
                         Create buttons that let customers respond to your
                         message or take action. You can add up to ten buttons.
                         If you add more than three buttons, they will appear in
                         a list.
                     </p>
+                    <div className="mt-2">
+                        <Popover
+                            onOpenChange={toggle}
+                            open={isOpen}
+                            className="group"
+                            content={<Buttons />}
+                        >
+                            <Button
+                                className={
+                                    isOpen
+                                        ? 'focus:outline-none border-primary text-primary hover:!text-primary hover:!border-primary'
+                                        : ''
+                                }
+                                onClick={toggle}
+                                icon={<Plus size={20} className="mt-1" />}
+                            >
+                                Add Buttons
+                            </Button>
+                        </Popover>
+                    </div>
                 </div>
             </div>
         </div>
@@ -153,3 +183,51 @@ const marketing = () => {
 };
 
 export default marketing;
+
+const Buttons = () => {
+    return (
+        <div>
+            <div>
+                <h4 className="font-semibold pt-1 pb-3 text-sm">
+                    Quick reply buttons
+                </h4>
+                {[
+                    { title: 'Marketing opt-out', remark: 'Recommended' },
+                    { title: 'Custom' },
+                ].map((item) => {
+                    return (
+                        <div className="hover:bg-gray-100 py-1 px-2 rounded-md mb-1">
+                            <p className="text-gray-700">{item.title}</p>
+                            {item?.remark && (
+                                <p className="text-[12px] text-gray-700">
+                                    {item.remark}
+                                </p>
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+            <div>
+                <h4 className="font-semibold pt-1 pb-3 text-sm">
+                    Call-to-action buttons
+                </h4>
+                {[
+                    { title: 'Visit website', remark: '2 buttons maximum' },
+                    { title: 'Call Phone Number', remark: '1 button maximum' },
+                    { title: 'Copy offer code', remark: '1 button maximum' },
+                ].map((item) => {
+                    return (
+                        <div className="hover:bg-gray-100 py-1 px-2 rounded-md mb-1">
+                            <p className="text-gray-700">{item.title}</p>
+                            {item?.remark && (
+                                <p className="text-[12px] text-gray-700">
+                                    {item.remark}
+                                </p>
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
