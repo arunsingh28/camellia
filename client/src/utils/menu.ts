@@ -1,11 +1,8 @@
 import { HomeIcon, LogOutIcon,User, GraduationCap,
-    //  History, 
-     MessageCircle,
-    //  Workflow,
-      Wallet2, LucideProps, Database, 
+       LucideProps, Database, 
       Workflow,
       MessageSquare,
-      MessagesSquare,
+      MessagesSquare,IndianRupee,UserPen,
       History} from "lucide-react";
 import { paths } from "@/router/path";
 
@@ -42,13 +39,6 @@ export const menuOptions: IMenuOptions = {
             path: paths.APP.TEACHERS.INDEX,
         },
     ],
-    // financing: [
-    //     {
-    //         name: "Billing & Usage",
-    //         icon: Wallet2,
-    //         path: paths.APP.BILLING_USAGE,
-    //     },
-    // ],
     utils:[
         {
             name: "Master Records",
@@ -71,11 +61,22 @@ export const menuOptions: IMenuOptions = {
             path: "/dashboard",
         },
     ],
-    general: [
-        {
-            name: "Logout",
-            icon: LogOutIcon,
-            path: paths.APP.DASHBOARD,
-        },
-    ],
 };
+
+export const ProfileMenu = [
+    {
+        title: 'Billing and Payments',
+        icon: IndianRupee,
+        path: ''
+    },
+    {
+        title: 'Profile',
+        icon: UserPen,
+        path: ''
+    },
+    {
+        title: "Logout",
+        icon: LogOutIcon,
+        path: paths.APP.DASHBOARD,
+    },
+]
