@@ -128,7 +128,10 @@ const marketing = () => {
                         </div>
                         <div className="flex flex-col gap-2 w-full">
                             <label className="text-sm text-gray-700">
-                                Footer
+                                Footer 
+                                <span className="text-[12px] text-gray-600 font-normal ml-5">
+                            Optional
+                        </span>
                             </label>
                             <Input
                                 placeholder="Enter text"
@@ -146,7 +149,7 @@ const marketing = () => {
                 <div className="w-full bg-white py-5 px-4 rounded-lg border-1 border-[#E0E0E0]">
                     <h2 className="text-base font-semibold text-gray-700">
                         Buttons{' '}
-                        <span className="text-sm text-gray-600 font-normal">
+                        <span className="text-[12px] text-gray-600 font-normal ml-5">
                             Optional
                         </span>
                     </h2>
